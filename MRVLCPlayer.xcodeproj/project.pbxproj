@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184C68581C89907C006DF9E3 /* MRVideoHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C68571C89907C006DF9E3 /* MRVideoHUDView.m */; };
 		18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289B1C7DC3B800DDA9E7 /* main.m */; };
 		18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289E1C7DC3B800DDA9E7 /* AppDelegate.m */; };
 		18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D628A11C7DC3B800DDA9E7 /* ViewController.m */; };
@@ -43,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		184C68561C89907C006DF9E3 /* MRVideoHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVideoHUDView.h; sourceTree = "<group>"; };
+		184C68571C89907C006DF9E3 /* MRVideoHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRVideoHUDView.m; sourceTree = "<group>"; };
 		18916A611C7FB23800D1589F /* HYQiHei-25JF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HYQiHei-25JF.otf"; sourceTree = "<group>"; };
 		18D628971C7DC3B800DDA9E7 /* MRVLCPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRVLCPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D6289B1C7DC3B800DDA9E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 		18D628C01C7DC43500DDA9E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				184C68561C89907C006DF9E3 /* MRVideoHUDView.h */,
+				184C68571C89907C006DF9E3 /* MRVideoHUDView.m */,
 				18D628C11C7DC43500DDA9E7 /* KRVideoPlayerControlView.h */,
 				18D628C21C7DC43500DDA9E7 /* KRVideoPlayerControlView.m */,
 				18D628C31C7DC43500DDA9E7 /* MRVLCMediaController.h */,
@@ -283,6 +288,7 @@
 				18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */,
 				18D628D21C7DC43500DDA9E7 /* MRVLCMediaController.mm in Sources */,
 				18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */,
+				184C68581C89907C006DF9E3 /* MRVideoHUDView.m in Sources */,
 				18D628D11C7DC43500DDA9E7 /* KRVideoPlayerControlView.m in Sources */,
 				18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */,
 			);

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AA0F4D8DB12996B9330D1E51199F22C7AAD2970D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ACF1F44A6A42BDA75A795677B9EF54B642FFF610" : 0,
+    "AA0F4D8DB12996B9330D1E51199F22C7AAD2970D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "58000305-2A2F-41EC-930A-F7C3FAADFF18",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ACF1F44A6A42BDA75A795677B9EF54B642FFF610" : "iCCUT\/",
+    "AA0F4D8DB12996B9330D1E51199F22C7AAD2970D" : "MRVLCPlayer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MRVLCPlayer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MRVLCPlayer.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Maru-zhang\/MRVLCPlayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA0F4D8DB12996B9330D1E51199F22C7AAD2970D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Maru-zhang\/iCCUT.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ACF1F44A6A42BDA75A795677B9EF54B642FFF610"
+    }
+  ]
+}

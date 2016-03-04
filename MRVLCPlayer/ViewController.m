@@ -8,12 +8,9 @@
 
 #import "ViewController.h"
 #import "MRVLCMediaController.h"
-#import "MRVLCHUD.h"
 
 @interface ViewController ()
-{
-    MRVLCHUD *hud;
-}
+
 @end
 
 @implementation ViewController

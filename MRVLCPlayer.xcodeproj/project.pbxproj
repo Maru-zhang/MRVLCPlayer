@@ -40,7 +40,6 @@
 		18D628E81C7DC4AB00DDA9E7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DC1C7DC4AB00DDA9E7 /* CoreMedia.framework */; };
 		18D628E91C7DC4AB00DDA9E7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DD1C7DC4AB00DDA9E7 /* VideoToolbox.framework */; };
 		18D628EA1C7DC4AB00DDA9E7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DE1C7DC4AB00DDA9E7 /* AudioToolbox.framework */; };
-		18D628EE1C7DCC7C00DDA9E7 /* MRVLCHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D628ED1C7DCC7C00DDA9E7 /* MRVLCHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,8 +83,6 @@
 		18D628DC1C7DC4AB00DDA9E7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		18D628DD1C7DC4AB00DDA9E7 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		18D628DE1C7DC4AB00DDA9E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		18D628EC1C7DCC7C00DDA9E7 /* MRVLCHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVLCHUD.h; sourceTree = "<group>"; };
-		18D628ED1C7DCC7C00DDA9E7 /* MRVLCHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRVLCHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,8 +188,6 @@
 		18D628C01C7DC43500DDA9E7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				18D628EC1C7DCC7C00DDA9E7 /* MRVLCHUD.h */,
-				18D628ED1C7DCC7C00DDA9E7 /* MRVLCHUD.m */,
 				18D628C11C7DC43500DDA9E7 /* KRVideoPlayerControlView.h */,
 				18D628C21C7DC43500DDA9E7 /* KRVideoPlayerControlView.m */,
 				18D628C31C7DC43500DDA9E7 /* MRVLCMediaController.h */,
@@ -285,7 +280,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D628EE1C7DCC7C00DDA9E7 /* MRVLCHUD.m in Sources */,
 				18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */,
 				18D628D21C7DC43500DDA9E7 /* MRVLCMediaController.mm in Sources */,
 				18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */,

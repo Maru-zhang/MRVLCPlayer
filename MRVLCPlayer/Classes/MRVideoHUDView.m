@@ -10,9 +10,8 @@
 
 #define kHUDCenter CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
 
-static const NSTimeInterval kHUDCycleTimeInterval = 3.0f;
-static const CGFloat kHUDCycleOffsetValue = 10.0f;
-static const CGFloat kHUDCycleLineWidth = 2.0f;
+static const NSTimeInterval kHUDCycleTimeInterval = 0.8f;
+static const CGFloat kHUDCycleLineWidth = 3.0f;
 
 @interface MRVideoHUDView ()
 {
@@ -44,16 +43,16 @@ static const CGFloat kHUDCycleLineWidth = 2.0f;
     _leftLayer.fillColor = [UIColor clearColor].CGColor;
     _leftLayer.strokeColor = [UIColor whiteColor].CGColor;
     _leftLayer.lineWidth = kHUDCycleLineWidth;
-    _leftLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(kHUDCycleOffsetValue / 2, kHUDCycleOffsetValue / 2, [self getCycleLayerSize].width, [self getCycleLayerSize].height)].CGPath;
+    _leftLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, [self getCycleLayerSize].width, [self getCycleLayerSize].height)].CGPath;
     _leftLayer.strokeEnd = 0.25;
     
     _rightLayer = [CAShapeLayer layer];
-    _rightLayer.bounds = CGRectMake(kHUDCycleOffsetValue / 2, kHUDCycleOffsetValue / 2, [self getCycleLayerSize].width, [self getCycleLayerSize].height);
-    _rightLayer.position = CGPointMake(50, 50);
+    _rightLayer.bounds = CGRectMake(0, 0, [self getCycleLayerSize].width, [self getCycleLayerSize].height);
+    _rightLayer.position = kHUDCenter;
     _rightLayer.fillColor = [UIColor clearColor].CGColor;
     _rightLayer.strokeColor = [UIColor whiteColor].CGColor;
     _rightLayer.lineWidth = kHUDCycleLineWidth;
-    _rightLayer.path = [UIBezierPath bezierPathWithOvalInRect:self.bounds].CGPath;
+    _rightLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, [self getCycleLayerSize].width, [self getCycleLayerSize].height)].CGPath;
     _rightLayer.strokeStart = 0.5;
     _rightLayer.strokeEnd = 0.75;
     
@@ -61,7 +60,7 @@ static const CGFloat kHUDCycleLineWidth = 2.0f;
     gLayer_l.backgroundColor = [UIColor redColor].CGColor;
     gLayer_l.bounds = self.bounds;
     gLayer_l.position = kHUDCenter;
-    gLayer_l.colors = @[(id)[UIColor redColor].CGColor,
+    gLayer_l.colors = @[(id)[UIColor cyanColor].CGColor,
                         (id)[UIColor orangeColor].CGColor,
                         (id)[UIColor yellowColor].CGColor];
     
@@ -71,10 +70,10 @@ static const CGFloat kHUDCycleLineWidth = 2.0f;
     gLayer_r.position = kHUDCenter;
     gLayer_r.colors = @[(id)[UIColor yellowColor].CGColor,
                         (id)[UIColor orangeColor].CGColor,
-                        (id)[UIColor redColor].CGColor];
+                        (id)[UIColor cyanColor].CGColor];
     
-//    gLayer_l.mask = _leftLayer;
-//    gLayer_r.mask = _rightLayer;
+    gLayer_l.mask = _leftLayer;
+    gLayer_r.mask = _rightLayer;
     
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -93,7 +92,7 @@ static const CGFloat kHUDCycleLineWidth = 2.0f;
 }
 
 - (CGSize)getCycleLayerSize {
-    return CGSizeMake(CGRectGetWidth(self.bounds) - kHUDCycleOffsetValue, CGRectGetHeight(self.bounds) - kHUDCycleOffsetValue);
+    return CGSizeMake(CGRectGetWidth(self.bounds) - kHUDCycleLineWidth, CGRectGetHeight(self.bounds) - kHUDCycleLineWidth);
 }
 
 @end

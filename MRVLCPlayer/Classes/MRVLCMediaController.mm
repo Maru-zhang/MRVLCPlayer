@@ -136,6 +136,14 @@
 }
 
 #pragma mark - Delegate
+- (void)mediaPlayerStateChanged:(NSNotification *)aNotification {
+    if (self.vlcPlayer.media.state == VLCMediaStateBuffering) {
+        self.controlView.indicatorView.hidden = NO;
+    }else if (self.vlcPlayer.media.state == VLCMediaStatePlaying) {
+        self.controlView.indicatorView.hidden = YES;
+    }
+}
+
 - (void)mediaPlayerTimeChanged:(NSNotification *)aNotification {
     
     if (!_totalTime) {

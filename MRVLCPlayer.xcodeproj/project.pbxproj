@@ -19,10 +19,9 @@
 		184C68771C89A0FE006DF9E3 /* kr-video-player-point@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184C68631C89A0FE006DF9E3 /* kr-video-player-point@3x.png */; };
 		184C68781C89A0FE006DF9E3 /* kr-video-player-shrinkscreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184C68641C89A0FE006DF9E3 /* kr-video-player-shrinkscreen@2x.png */; };
 		184C68791C89A0FE006DF9E3 /* kr-video-player-shrinkscreen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184C68651C89A0FE006DF9E3 /* kr-video-player-shrinkscreen@3x.png */; };
-		184C687A1C89A0FE006DF9E3 /* KRVideoPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C68691C89A0FE006DF9E3 /* KRVideoPlayerControlView.m */; };
 		184C687B1C89A0FE006DF9E3 /* MRVideoHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */; };
-		184C687C1C89A0FE006DF9E3 /* MRVLCMediaController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 184C686D1C89A0FE006DF9E3 /* MRVLCMediaController.mm */; };
 		184C687F1C8AC35E006DF9E3 /* MRVLCPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 184C687E1C8AC35E006DF9E3 /* MRVLCPlayer.mm */; };
+		184C68821C8B0CBC006DF9E3 /* KRVideoPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C68811C8B0CBC006DF9E3 /* KRVideoPlayerControlView.m */; };
 		18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289B1C7DC3B800DDA9E7 /* main.m */; };
 		18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289E1C7DC3B800DDA9E7 /* AppDelegate.m */; };
 		18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D628A11C7DC3B800DDA9E7 /* ViewController.m */; };
@@ -57,14 +56,12 @@
 		184C68631C89A0FE006DF9E3 /* kr-video-player-point@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-point@3x.png"; sourceTree = "<group>"; };
 		184C68641C89A0FE006DF9E3 /* kr-video-player-shrinkscreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-shrinkscreen@2x.png"; sourceTree = "<group>"; };
 		184C68651C89A0FE006DF9E3 /* kr-video-player-shrinkscreen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kr-video-player-shrinkscreen@3x.png"; sourceTree = "<group>"; };
-		184C68681C89A0FE006DF9E3 /* KRVideoPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRVideoPlayerControlView.h; sourceTree = "<group>"; };
-		184C68691C89A0FE006DF9E3 /* KRVideoPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerControlView.m; sourceTree = "<group>"; };
 		184C686A1C89A0FE006DF9E3 /* MRVideoHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVideoHUDView.h; sourceTree = "<group>"; };
 		184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRVideoHUDView.m; sourceTree = "<group>"; };
-		184C686C1C89A0FE006DF9E3 /* MRVLCMediaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVLCMediaController.h; sourceTree = "<group>"; };
-		184C686D1C89A0FE006DF9E3 /* MRVLCMediaController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MRVLCMediaController.mm; sourceTree = "<group>"; };
 		184C687D1C8AC35E006DF9E3 /* MRVLCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVLCPlayer.h; sourceTree = "<group>"; };
 		184C687E1C8AC35E006DF9E3 /* MRVLCPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MRVLCPlayer.mm; sourceTree = "<group>"; };
+		184C68801C8B0CBC006DF9E3 /* KRVideoPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRVideoPlayerControlView.h; sourceTree = "<group>"; };
+		184C68811C8B0CBC006DF9E3 /* KRVideoPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRVideoPlayerControlView.m; sourceTree = "<group>"; };
 		18916A611C7FB23800D1589F /* HYQiHei-25JF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HYQiHei-25JF.otf"; sourceTree = "<group>"; };
 		18D628971C7DC3B800DDA9E7 /* MRVLCPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRVLCPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D6289B1C7DC3B800DDA9E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -139,10 +136,8 @@
 			children = (
 				184C686A1C89A0FE006DF9E3 /* MRVideoHUDView.h */,
 				184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */,
-				184C68681C89A0FE006DF9E3 /* KRVideoPlayerControlView.h */,
-				184C68691C89A0FE006DF9E3 /* KRVideoPlayerControlView.m */,
-				184C686C1C89A0FE006DF9E3 /* MRVLCMediaController.h */,
-				184C686D1C89A0FE006DF9E3 /* MRVLCMediaController.mm */,
+				184C68801C8B0CBC006DF9E3 /* KRVideoPlayerControlView.h */,
+				184C68811C8B0CBC006DF9E3 /* KRVideoPlayerControlView.m */,
 				184C687D1C8AC35E006DF9E3 /* MRVLCPlayer.h */,
 				184C687E1C8AC35E006DF9E3 /* MRVLCPlayer.mm */,
 			);
@@ -288,12 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184C68821C8B0CBC006DF9E3 /* KRVideoPlayerControlView.m in Sources */,
 				184C687F1C8AC35E006DF9E3 /* MRVLCPlayer.mm in Sources */,
 				18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */,
-				184C687C1C89A0FE006DF9E3 /* MRVLCMediaController.mm in Sources */,
 				184C687B1C89A0FE006DF9E3 /* MRVideoHUDView.m in Sources */,
 				18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */,
-				184C687A1C89A0FE006DF9E3 /* KRVideoPlayerControlView.m in Sources */,
 				18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

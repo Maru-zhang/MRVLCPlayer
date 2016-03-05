@@ -134,10 +134,10 @@
 		184C68661C89A0FE006DF9E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				184C68681C89A0FE006DF9E3 /* KRVideoPlayerControlView.h */,
-				184C68691C89A0FE006DF9E3 /* KRVideoPlayerControlView.m */,
 				184C686A1C89A0FE006DF9E3 /* MRVideoHUDView.h */,
 				184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */,
+				184C68681C89A0FE006DF9E3 /* KRVideoPlayerControlView.h */,
+				184C68691C89A0FE006DF9E3 /* KRVideoPlayerControlView.m */,
 				184C686C1C89A0FE006DF9E3 /* MRVLCMediaController.h */,
 				184C686D1C89A0FE006DF9E3 /* MRVLCMediaController.mm */,
 			);

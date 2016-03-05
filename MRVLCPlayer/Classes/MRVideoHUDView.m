@@ -8,6 +8,11 @@
 
 #import "MRVideoHUDView.h"
 
+#define kHUDCenter CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
+
+static const NSTimeInterval kHUDCycleTimeInterval = 3.0f;
+static const CGFloat kHUDCycleOffsetValue = 10.0f;
+static const CGFloat kHUDCycleLineWidth = 2.0f;
 
 @interface MRVideoHUDView ()
 {
@@ -20,46 +25,75 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupAnimation];
     }
     return self;
+}
+
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    [self setupAnimation];
 }
 
 
 - (void)setupAnimation {
     
     _leftLayer = [CAShapeLayer layer];
-    _leftLayer.frame = self.bounds;
+    _leftLayer.bounds = CGRectMake(0, 0, [self getCycleLayerSize].width, [self getCycleLayerSize].height);
+    _leftLayer.position = kHUDCenter;
     _leftLayer.fillColor = [UIColor clearColor].CGColor;
     _leftLayer.strokeColor = [UIColor whiteColor].CGColor;
-    _leftLayer.lineWidth = 2.0f;
-    _leftLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100, 100)].CGPath;
+    _leftLayer.lineWidth = kHUDCycleLineWidth;
+    _leftLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(kHUDCycleOffsetValue / 2, kHUDCycleOffsetValue / 2, [self getCycleLayerSize].width, [self getCycleLayerSize].height)].CGPath;
     _leftLayer.strokeEnd = 0.25;
     
     _rightLayer = [CAShapeLayer layer];
-    _rightLayer.frame = self.bounds;
+    _rightLayer.bounds = CGRectMake(kHUDCycleOffsetValue / 2, kHUDCycleOffsetValue / 2, [self getCycleLayerSize].width, [self getCycleLayerSize].height);
+    _rightLayer.position = CGPointMake(50, 50);
     _rightLayer.fillColor = [UIColor clearColor].CGColor;
     _rightLayer.strokeColor = [UIColor whiteColor].CGColor;
-    _rightLayer.lineWidth = 2.0f;
-    _rightLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100, 100)].CGPath;
+    _rightLayer.lineWidth = kHUDCycleLineWidth;
+    _rightLayer.path = [UIBezierPath bezierPathWithOvalInRect:self.bounds].CGPath;
     _rightLayer.strokeStart = 0.5;
     _rightLayer.strokeEnd = 0.75;
     
+    CAGradientLayer *gLayer_l = [CAGradientLayer layer];
+    gLayer_l.backgroundColor = [UIColor redColor].CGColor;
+    gLayer_l.bounds = self.bounds;
+    gLayer_l.position = kHUDCenter;
+    gLayer_l.colors = @[(id)[UIColor redColor].CGColor,
+                        (id)[UIColor orangeColor].CGColor,
+                        (id)[UIColor yellowColor].CGColor];
+    
+    CAGradientLayer *gLayer_r = [CAGradientLayer layer];
+    gLayer_r.backgroundColor = [UIColor redColor].CGColor;
+    gLayer_r.bounds = self.bounds;
+    gLayer_r.position = kHUDCenter;
+    gLayer_r.colors = @[(id)[UIColor yellowColor].CGColor,
+                        (id)[UIColor orangeColor].CGColor,
+                        (id)[UIColor redColor].CGColor];
+    
+//    gLayer_l.mask = _leftLayer;
+//    gLayer_r.mask = _rightLayer;
+    
+    
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     
-    animation.duration = 2.0f;
-    animation.repeatCount = 0;
-    animation.fromValue = [NSNumber numberWithFloat:M_PI];
-    animation.toValue = [NSNumber numberWithFloat:2 * M_PI];
+    animation.duration = kHUDCycleTimeInterval;
+    animation.repeatCount = HUGE_VALF;
+    animation.fromValue = [NSNumber numberWithFloat:0.f];
+    animation.toValue = [NSNumber numberWithFloat:M_PI * 2];
     
     [_rightLayer addAnimation:animation forKey:nil];
     [_leftLayer addAnimation:animation forKey:nil];
     
-    [self.layer addSublayer:_rightLayer];
-    [self.layer addSublayer:_leftLayer];
+    [self.layer addSublayer:gLayer_l];
+    [self.layer addSublayer:gLayer_r];
     
-    
-    
+}
+
+- (CGSize)getCycleLayerSize {
+    return CGSizeMake(CGRectGetWidth(self.bounds) - kHUDCycleOffsetValue, CGRectGetHeight(self.bounds) - kHUDCycleOffsetValue);
 }
 
 @end

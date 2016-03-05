@@ -162,13 +162,9 @@
 
 #pragma mark - property
 - (VLCMediaPlayer *)vlcPlayer {
-    
     if (!_vlcPlayer) {
-        
         _vlcPlayer = [[VLCMediaPlayer alloc] init];
-        
     }
-    
     return _vlcPlayer;
 }
 
@@ -236,8 +232,6 @@
         }];
     }
     
-    NSLog(@"%d",self.isFullscreenModel);
-
 }
 
 

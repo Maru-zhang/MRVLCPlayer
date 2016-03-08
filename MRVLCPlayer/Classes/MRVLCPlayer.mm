@@ -7,7 +7,7 @@
 //
 
 #import "MRVLCPlayer.h"
-#import "KRVideoPlayerControlView.h"
+#import "MRVideoControlView.h"
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
@@ -17,7 +17,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     CGRect _originFrame;
 }
 @property (nonatomic,strong) VLCMediaPlayer *player;
-@property (nonatomic, nonnull,strong) KRVideoPlayerControlView *controlView;
+@property (nonatomic, nonnull,strong) MRVideoControlView *controlView;
 @end
 
 @implementation MRVLCPlayer
@@ -159,7 +159,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
     if (!_totalTime) { _totalTime = self.player.media.length;}
     
-    float precentValue = ([self.player.time.value floatValue]) / ([_totalTime.value floatValue]);
+    float precentValue = ([self.player.time.numberValue floatValue]) / ([_totalTime.numberValue floatValue]);
     
     [self.controlView.progressSlider setValue:precentValue animated:YES];
     
@@ -175,9 +175,9 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     return _player;
 }
 
-- (KRVideoPlayerControlView *)controlView {
+- (MRVideoControlView *)controlView {
     if (!_controlView) {
-        _controlView = [[KRVideoPlayerControlView alloc] initWithFrame:self.bounds];
+        _controlView = [[MRVideoControlView alloc] initWithFrame:self.bounds];
     }
     return _controlView;
 }

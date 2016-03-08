@@ -24,9 +24,9 @@
 
     MRVLCPlayer *player = [[MRVLCPlayer alloc] init];
     
-    player.frame = CGRectMake(0, 0, 375, 375 / 16 * 9);
+    player.frame = CGRectMake(0, 100, 375, 375 / 16 * 9);
     
-    player.mediaURL = [NSURL URLWithString:@"http://113.215.3.11/youku/65731F487423A8313FB9C5375E/030008070056D90DFE0A0C03BAF2B1C2B40EEC-6325-B612-C7B6-10B4F9BE70B3.mp4"];
+    player.mediaURL = [NSURL URLWithString:@"http://202.198.176.113/video/v8/jlp/zjkx/0901.rmvb"];
     
     [player showIn:self.view];
 }

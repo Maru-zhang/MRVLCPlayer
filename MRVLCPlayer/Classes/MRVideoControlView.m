@@ -8,30 +8,14 @@
 
 #import "MRVideoControlView.h"
 
-
 #define MRRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
-static const CGFloat kVideoControlBarHeight = 30.0;
+static const CGFloat kVideoControlBarHeight = 35.0;
 static const CGFloat kVideoControlSliderHeight = 10.0;
 static const CGFloat kVideoControlAnimationTimeinterval = 0.3;
 static const CGFloat kVideoControlTimeLabelFontSize = 10.0;
-static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 5.0;
+static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
 
-@interface MRVideoControlView ()
-
-@property (nonatomic, strong) UIView *topBar;
-@property (nonatomic, strong) UIView *bottomBar;
-@property (nonatomic, strong) UIButton *playButton;
-@property (nonatomic, strong) UIButton *pauseButton;
-@property (nonatomic, strong) UIButton *fullScreenButton;
-@property (nonatomic, strong) UIButton *shrinkScreenButton;
-@property (nonatomic,strong) UIButton *soundButton;
-@property (nonatomic, strong) MRProgressSlider *progressSlider;
-@property (nonatomic, strong) UIButton *closeButton;
-@property (nonatomic, strong) UILabel *timeLabel;
-@property (nonatomic, assign) BOOL isBarShowing;
-
-@end
 
 @implementation MRVideoControlView
 
@@ -51,57 +35,46 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 5.0;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.topBar.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), CGRectGetWidth(self.bounds), kVideoControlBarHeight);
-    self.closeButton.frame = CGRectMake(CGRectGetWidth(self.topBar.bounds) - CGRectGetWidth(self.closeButton.bounds), CGRectGetMinX(self.topBar.bounds), CGRectGetWidth(self.closeButton.bounds), CGRectGetHeight(self.closeButton.bounds));
-    self.bottomBar.frame = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetHeight(self.bounds) - kVideoControlBarHeight - kVideoControlSliderHeight, CGRectGetWidth(self.bounds), kVideoControlBarHeight + kVideoControlSliderHeight);
-    self.progressSlider.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), kVideoControlSliderHeight);
-    self.playButton.frame = CGRectMake(CGRectGetMinX(self.bottomBar.bounds), CGRectGetHeight(self.bottomBar.bounds)/2 - CGRectGetHeight(self.playButton.bounds)/2 + CGRectGetHeight(self.progressSlider.frame) / 2, CGRectGetWidth(self.playButton.bounds), CGRectGetHeight(self.playButton.bounds));
-    self.pauseButton.frame = self.playButton.frame;
-    self.fullScreenButton.frame = CGRectMake(CGRectGetWidth(self.bottomBar.bounds) - CGRectGetWidth(self.fullScreenButton.bounds), self.playButton.frame.origin.y, CGRectGetWidth(self.fullScreenButton.bounds), CGRectGetHeight(self.fullScreenButton.bounds));
+    
+    self.topBar.frame             = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), CGRectGetWidth(self.bounds), kVideoControlBarHeight);
+    self.closeButton.frame        = CGRectMake(CGRectGetWidth(self.topBar.bounds) - CGRectGetWidth(self.closeButton.bounds), CGRectGetMinX(self.topBar.bounds), CGRectGetWidth(self.closeButton.bounds), CGRectGetHeight(self.closeButton.bounds));
+    self.bottomBar.frame          = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetHeight(self.bounds) - kVideoControlBarHeight, CGRectGetWidth(self.bounds), kVideoControlBarHeight);
+    self.progressSlider.frame     = CGRectMake(0, 0, CGRectGetWidth(self.bounds), kVideoControlSliderHeight);
+    self.playButton.frame         = CGRectMake(CGRectGetMinX(self.bottomBar.bounds), CGRectGetHeight(self.bottomBar.bounds)/2 - CGRectGetHeight(self.playButton.bounds)/2 + CGRectGetHeight(self.progressSlider.frame) / 2, CGRectGetWidth(self.playButton.bounds), CGRectGetHeight(self.playButton.bounds));
+    self.pauseButton.frame        = self.playButton.frame;
+    self.fullScreenButton.frame   = CGRectMake(CGRectGetWidth(self.bottomBar.bounds) - CGRectGetWidth(self.fullScreenButton.bounds) - 5, self.playButton.frame.origin.y, CGRectGetWidth(self.fullScreenButton.bounds), CGRectGetHeight(self.fullScreenButton.bounds));
     self.shrinkScreenButton.frame = self.fullScreenButton.frame;
-    self.indicatorView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
-    self.soundButton.frame = CGRectMake(CGRectGetMaxX(self.playButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.soundButton.bounds), CGRectGetHeight(self.soundButton.bounds));
-    self.timeLabel.frame = CGRectMake(CGRectGetMaxX(self.soundButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.bottomBar.bounds), CGRectGetHeight(self.timeLabel.bounds));
+    self.indicatorView.center     = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
+    self.soundButton.frame        = CGRectMake(CGRectGetMaxX(self.playButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.soundButton.bounds), CGRectGetHeight(self.soundButton.bounds));
+    self.timeLabel.frame          = CGRectMake(CGRectGetMaxX(self.soundButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.bottomBar.bounds), CGRectGetHeight(self.timeLabel.bounds));
 }
 
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    self.isBarShowing = YES;
 }
 
 - (void)animateHide
 {
-    if (!self.isBarShowing) {
-        return;
-    }
     [UIView animateWithDuration:kVideoControlAnimationTimeinterval animations:^{
-        self.topBar.alpha = 0.0;
-        self.bottomBar.alpha = 0.0;
+        self.topBar.hidden = YES;
+        self.bottomBar.hidden = YES;
     } completion:^(BOOL finished) {
-        self.isBarShowing = NO;
     }];
 }
 
 - (void)animateShow
 {
-    if (self.isBarShowing) {
-        return;
-    }
     [UIView animateWithDuration:kVideoControlAnimationTimeinterval animations:^{
-        self.topBar.alpha = 1.0;
-        self.bottomBar.alpha = 1.0;
+        self.topBar.hidden = NO;
+        self.bottomBar.hidden = NO;
     } completion:^(BOOL finished) {
-        self.isBarShowing = YES;
         [self autoFadeOutControlBar];
     }];
 }
 
 - (void)autoFadeOutControlBar
 {
-    if (!self.isBarShowing) {
-        return;
-    }
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(animateHide) object:nil];
     [self performSelector:@selector(animateHide) withObject:nil afterDelay:kVideoControlBarAutoFadeOutTimeinterval];
 }
@@ -111,23 +84,17 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 5.0;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(animateHide) object:nil];
 }
 
-- (void)onTap:(UITapGestureRecognizer *)gesture
-{
-    if (gesture.state == UIGestureRecognizerStateRecognized) {
-        if (self.isBarShowing) {
-            [self animateHide];
-        } else {
-            [self animateShow];
-        }
-    }
+- (void)responseTapImmediately {
+    self.bottomBar.hidden ? [self animateShow] : [self animateHide];
 }
 
 #pragma mark - Private Method
 - (void)setupView {
     
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Video Bg"]];
-//    self.backgroundColor = [UIColor clearColor];
-    
+    self.backgroundColor = [UIColor clearColor];
+
+
+    [self.layer addSublayer:self.bgLayer];
     [self addSubview:self.topBar];
     [self addSubview:self.indicatorView];
     [self addSubview:self.bottomBar];
@@ -145,12 +112,64 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 5.0;
     self.pauseButton.hidden = YES;
     self.shrinkScreenButton.hidden = YES;
 
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
-    [self addGestureRecognizer:tapGesture];
+}
+
+
+#pragma mark - Override
+#pragma mark Touch Event
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+    UITouch *touch = [touches anyObject];
+    
+    CGPoint nowPoint = [touch locationInView:self];
+    CGPoint prePoint = [touch previousLocationInView:self];
+    
+    CGFloat d_value_x = nowPoint.x - prePoint.x;
+    CGFloat d_value_y = nowPoint.y - prePoint.y;
+    
+    if (ABS(d_value_x) > ABS(d_value_y)) {
+            [self.topBar setHidden:NO];
+            [self.bottomBar setHidden:NO];
+        if (d_value_x > 0) {
+            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
+                [self.delegate controlViewFingerMoveRight];
+            }
+        }else {
+            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveLeft)]) {
+                [self.delegate controlViewFingerMoveLeft];
+            }
+        }
+    }else {
+        if (d_value_y > 0) {
+            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveDown)]) {
+                [self.delegate controlViewFingerMoveDown];
+            }
+        }else {
+            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveUp)]) {
+                [self.delegate controlViewFingerMoveUp];
+            }
+        }
+    }
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    UITouch *touch = [touches anyObject];
+    
+    if (touch.tapCount > 0) {
+        [self responseTapImmediately];
+    }else {
+        [self autoFadeOutControlBar];
+    }
+    
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self responseTapImmediately];
 }
 
 #pragma mark - Property
-
 - (MRVideoHUDView *)indicatorView {
     if (!_indicatorView) {
         _indicatorView = [[MRVideoHUDView alloc] init];
@@ -231,7 +250,7 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 5.0;
     if (!_progressSlider) {
         _progressSlider = [[MRProgressSlider alloc] init];
         [_progressSlider setThumbImage:[UIImage imageNamed:@"Player Control Nob"] forState:UIControlStateNormal];
-        [_progressSlider setMinimumTrackTintColor:MRRGB(215, 24, 22)];
+        [_progressSlider setMinimumTrackTintColor:MRRGB(239, 71, 94)];
         [_progressSlider setMaximumTrackTintColor:MRRGB(157, 157, 157)];
         [_progressSlider setBackgroundColor:[UIColor clearColor]];
         _progressSlider.value = 0.f;
@@ -256,11 +275,21 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 5.0;
         _timeLabel = [UILabel new];
         _timeLabel.backgroundColor = [UIColor clearColor];
         _timeLabel.font = [UIFont systemFontOfSize:kVideoControlTimeLabelFontSize];
-        _timeLabel.textColor = [UIColor whiteColor];
+        _timeLabel.textColor = [UIColor lightGrayColor];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.bounds = CGRectMake(0, 0, kVideoControlTimeLabelFontSize, kVideoControlBarHeight);
     }
     return _timeLabel;
+}
+
+- (CALayer *)bgLayer {
+    if (!_bgLayer) {
+        _bgLayer = [CALayer layer];
+        _bgLayer.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Video Bg"]].CGColor;
+        _bgLayer.bounds = self.frame;
+        _bgLayer.position = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
+    }
+    return _bgLayer;
 }
 
 

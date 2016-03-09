@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MobileVLCKit/MobileVLCKit.h>
+#import "MRVideoControlView.h"
 
-@interface MRVLCPlayer : UIView <VLCMediaPlayerDelegate>
+@interface MRVLCPlayer : UIView <VLCMediaPlayerDelegate,MRVideoControlViewDelegate>
 
 @property (nonatomic,strong,nonnull) NSURL *mediaURL;
 @property (nonatomic,assign) BOOL isFullscreenModel;
 
 
-- (void)showIn:(UIView * _Nonnull)view;
+- (void)showInView:(UIView * _Nonnull)view;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MRVLCPlayer.h"
-#import "MRVideoControlView.h"
+#import <AVFoundation/AVFoundation.h>
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
@@ -37,11 +37,12 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self setupView];
     
     [self setupControlView];
+    
 }
 
 
 #pragma mark - Public Method
-- (void)showIn:(UIView *)view {
+- (void)showInView:(UIView *)view {
     
     [view addSubview:self];
     
@@ -54,7 +55,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 - (void)dismiss {
-    
+    [self.player stop];
+    self.player.delegate = nil;
+    self.player.drawable = nil;
+    self.player = nil;
+    [self removeFromSuperview];
 }
 
 #pragma mark - Private Method
@@ -63,6 +68,9 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 - (void)setupPlayer {
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    NSError *sesstionError;
+    [session setCategory:AVAudioSessionCategoryPlayback error:&sesstionError];
     [self.player setDrawable:self];
     self.player.media = [[VLCMedia alloc] initWithURL:self.mediaURL];
 }
@@ -78,46 +86,37 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.shrinkScreenButton addTarget:self action:@selector(shrinkScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.progressSlider addTarget:self action:@selector(progressClick) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self.controlView.soundButton addTarget:self action:@selector(soundClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark Button Event
 - (void)playButtonClick {
     
     [self play];
-    self.controlView.playButton.hidden = YES;
-    self.controlView.pauseButton.hidden = NO;
     
 }
 
 - (void)pauseButtonClick {
     
     [self pause];
-    self.controlView.playButton.hidden = NO;
-    self.controlView.pauseButton.hidden = YES;
 }
 
 - (void)closeButtonClick {
-    
-    [self.player stop];
-    self.player.delegate = nil;
-    self.player.drawable = nil;
-    self.player = nil;
-    
-    [self removeFromSuperview];
-    
+    [self dismiss];
 }
 
 - (void)fullScreenButtonClick {
+    [self.controlView autoFadeOutControlBar];
     self.isFullscreenModel = YES;
 }
 
 - (void)shrinkScreenButtonClick {
+    [self.controlView autoFadeOutControlBar];
     self.isFullscreenModel = NO;
 }
 
 - (void)progressClick {
-    
+
     if (!_totalTime) { _totalTime = self.player.media.length; }
     
     int targetIntvalue = (int)(self.controlView.progressSlider.value * (float)_totalTime.intValue);
@@ -125,15 +124,27 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     VLCTime *targetTime = [[VLCTime alloc] initWithInt:targetIntvalue];
     
     [self.player setTime:targetTime];
+    
+    [self.controlView autoFadeOutControlBar];
+}
+
+- (void)soundClick {
+    self.player.audio.muted ? self.player.audio.muted = NO : self.player.audio.muted = YES;
 }
 
 #pragma mark Player Logic
 - (void)play {
     [self.player play];
+    self.controlView.playButton.hidden = YES;
+    self.controlView.pauseButton.hidden = NO;
+    [self.controlView autoFadeOutControlBar];
 }
 
 - (void)pause {
     [self.player pause];
+    self.controlView.playButton.hidden = NO;
+    self.controlView.pauseButton.hidden = YES;
+    [self.controlView autoFadeOutControlBar];
 }
 
 - (void)stop {
@@ -141,11 +152,15 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 #pragma mark - Delegate
+#pragma mark VLC
 - (void)mediaPlayerStateChanged:(NSNotification *)aNotification {
+    [self bringSubviewToFront:self.controlView];
     if (self.player.media.state == VLCMediaStateBuffering) {
         self.controlView.indicatorView.hidden = NO;
+        self.controlView.bgLayer.hidden = NO;
     }else if (self.player.media.state == VLCMediaStatePlaying) {
         self.controlView.indicatorView.hidden = YES;
+        self.controlView.bgLayer.hidden = YES;
     }
 }
 
@@ -166,6 +181,29 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self.controlView.timeLabel setText:[NSString stringWithFormat:@"%@/%@",_player.time.stringValue,_totalTime.stringValue]];
 }
 
+#pragma mark ControlView
+- (void)controlViewFingerMoveLeft {
+    
+    [self.player shortJumpBackward];
+    
+}
+
+- (void)controlViewFingerMoveRight {
+
+    [self.player shortJumpForward];
+    
+}
+
+- (void)controlViewFingerMoveUp {
+    
+    [self.player.audio volumeUp];
+}
+
+- (void)controlViewFingerMoveDown {
+    
+    [self.player.audio volumeDown];
+}
+
 #pragma mark - Property
 - (VLCMediaPlayer *)player {
     if (!_player) {
@@ -178,6 +216,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 - (MRVideoControlView *)controlView {
     if (!_controlView) {
         _controlView = [[MRVideoControlView alloc] initWithFrame:self.bounds];
+        _controlView.delegate = self;
     }
     return _controlView;
 }

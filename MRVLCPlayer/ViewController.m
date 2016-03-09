@@ -4,7 +4,7 @@
 //
 //  Created by apple on 16/2/24.
 //  Copyright © 2016年 Alloc. All rights reserved.
-//
+//  
 
 #import "ViewController.h"
 #import "MRVLCPlayer.h"
@@ -26,9 +26,9 @@
     
     player.frame = CGRectMake(0, 100, 375, 375 / 16 * 9);
     
-    player.mediaURL = [NSURL URLWithString:@"http://202.198.176.113/video/v8/jlp/zjkx/0901.rmvb"];
+    player.mediaURL = [NSURL URLWithString:@"http://202.198.176.113/video002/2015/slzs.rmvb"];
     
-    [player showIn:self.view];
+    [player showInView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

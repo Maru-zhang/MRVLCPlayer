@@ -15,7 +15,6 @@ static const CGFloat MRProgressWidth = 8.0f;
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.layer.cornerRadius = 0;
 }
 
 - (CGRect)trackRectForBounds:(CGRect)bounds {

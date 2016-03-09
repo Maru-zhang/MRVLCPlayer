@@ -10,18 +10,37 @@
 #import "MRVideoHUDView.h"
 #import "MRProgressSlider.h"
 
+@protocol MRVideoControlViewDelegate <NSObject>
+@optional
+- (void)controlViewFingerMoveUp;
+- (void)controlViewFingerMoveDown;
+- (void)controlViewFingerMoveLeft;
+- (void)controlViewFingerMoveRight;
+
+- (void)controlViewPlayButtonDidClick;
+- (void)controlViewPauseButtonDidClick;
+- (void)controlViewfullScreenButtonDidClick;
+- (void)controlViewshrinkScreenButtonDidClick;
+
+@end
+
 @interface MRVideoControlView : UIView
 
-@property (nonatomic, strong, readonly) UIView *topBar;
-@property (nonatomic, strong, readonly) UIView *bottomBar;
-@property (nonatomic, strong, readonly) UIButton *playButton;
-@property (nonatomic, strong, readonly) UIButton *pauseButton;
-@property (nonatomic, strong, readonly) UIButton *fullScreenButton;
-@property (nonatomic, strong, readonly) UIButton *shrinkScreenButton;
-@property (nonatomic, strong, readonly) MRProgressSlider *progressSlider;
-@property (nonatomic, strong, readonly) UIButton *closeButton;
-@property (nonatomic, strong, readonly) UILabel *timeLabel;
+@property (nonatomic,weak) id<MRVideoControlViewDelegate> delegate;
+
+@property (nonatomic, strong) UIView *topBar;
+@property (nonatomic, strong) UIView *bottomBar;
+@property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) UIButton *pauseButton;
+@property (nonatomic, strong) UIButton *fullScreenButton;
+@property (nonatomic, strong) UIButton *shrinkScreenButton;
+@property (nonatomic, strong) UIButton *soundButton;
+@property (nonatomic, strong) MRProgressSlider *progressSlider;
+@property (nonatomic, strong) UIButton *closeButton;
+@property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) MRVideoHUDView *indicatorView;
+@property (nonatomic, strong) CALayer *bgLayer;
+
 
 - (void)animateHide;
 - (void)animateShow;

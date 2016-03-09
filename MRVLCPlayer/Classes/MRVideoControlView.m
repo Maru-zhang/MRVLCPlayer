@@ -15,6 +15,7 @@ static const CGFloat kVideoControlSliderHeight = 10.0;
 static const CGFloat kVideoControlAnimationTimeinterval = 0.3;
 static const CGFloat kVideoControlTimeLabelFontSize = 10.0;
 static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
+static const CGFloat kVideoControlCorrectValue = 3;
 
 
 @implementation MRVideoControlView
@@ -93,13 +94,12 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
     
     self.backgroundColor = [UIColor clearColor];
 
-
     [self.layer addSublayer:self.bgLayer];
     [self addSubview:self.topBar];
     [self addSubview:self.indicatorView];
     [self addSubview:self.bottomBar];
     [self addSubview:self.indicatorView];
-    
+
     [self.topBar addSubview:self.closeButton];
     [self.bottomBar addSubview:self.playButton];
     [self.bottomBar addSubview:self.pauseButton];
@@ -130,21 +130,21 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
     if (ABS(d_value_x) > ABS(d_value_y)) {
             [self.topBar setHidden:NO];
             [self.bottomBar setHidden:NO];
-        if (d_value_x > 0) {
+        if (d_value_x > kVideoControlCorrectValue) {
             if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
                 [self.delegate controlViewFingerMoveRight];
             }
-        }else {
+        }else if(d_value_x < -kVideoControlCorrectValue) {
             if ([_delegate respondsToSelector:@selector(controlViewFingerMoveLeft)]) {
                 [self.delegate controlViewFingerMoveLeft];
             }
         }
     }else {
-        if (d_value_y > 0) {
+        if (d_value_y > kVideoControlCorrectValue) {
             if ([_delegate respondsToSelector:@selector(controlViewFingerMoveDown)]) {
                 [self.delegate controlViewFingerMoveDown];
             }
-        }else {
+        }else if(d_value_y < -kVideoControlCorrectValue) {
             if ([_delegate respondsToSelector:@selector(controlViewFingerMoveUp)]) {
                 [self.delegate controlViewFingerMoveUp];
             }
@@ -290,6 +290,24 @@ static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
         _bgLayer.position = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
     }
     return _bgLayer;
+}
+
+- (UISlider *)volumeSlider {
+    if (!_volumeSlider) {
+        for (UIControl *view in self.volumeView.subviews) {
+            if ([view.superclass isSubclassOfClass:[UISlider class]]) {
+                _volumeSlider = (UISlider *)view;
+            }
+        }
+    }
+    return _volumeSlider;
+}
+
+- (MPVolumeView *)volumeView {
+    if (!_volumeView) {
+        _volumeView = [[MPVolumeView alloc] init];
+    }
+    return _volumeView;
 }
 
 

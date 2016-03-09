@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		184C686E1C89A0FE006DF9E3 /* Player close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184C685A1C89A0FE006DF9E3 /* Player close@2x.png */; };
-		184C686F1C89A0FE006DF9E3 /* Player close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 184C685B1C89A0FE006DF9E3 /* Player close@3x.png */; };
 		184C687B1C89A0FE006DF9E3 /* MRVideoHUDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */; };
 		184C687F1C8AC35E006DF9E3 /* MRVLCPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 184C687E1C8AC35E006DF9E3 /* MRVLCPlayer.mm */; };
 		18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289B1C7DC3B800DDA9E7 /* main.m */; };
@@ -30,6 +28,8 @@
 		18D628E81C7DC4AB00DDA9E7 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DC1C7DC4AB00DDA9E7 /* CoreMedia.framework */; };
 		18D628E91C7DC4AB00DDA9E7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DD1C7DC4AB00DDA9E7 /* VideoToolbox.framework */; };
 		18D628EA1C7DC4AB00DDA9E7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DE1C7DC4AB00DDA9E7 /* AudioToolbox.framework */; };
+		422C88C71C9022830098CE64 /* Player close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422C88C51C9022830098CE64 /* Player close@2x.png */; };
+		422C88C81C9022830098CE64 /* Player close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422C88C61C9022830098CE64 /* Player close@3x.png */; };
 		42B02DBB1C8E70D9002ACACC /* Full Screen Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B02DA91C8E70D9002ACACC /* Full Screen Icon.png */; };
 		42B02DBC1C8E70D9002ACACC /* Full Screen Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B02DAA1C8E70D9002ACACC /* Full Screen Icon@2x.png */; };
 		42B02DBD1C8E70D9002ACACC /* Full Screen Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B02DAB1C8E70D9002ACACC /* Full Screen Icon@3x.png */; };
@@ -56,8 +56,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		184C685A1C89A0FE006DF9E3 /* Player close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@2x.png"; sourceTree = "<group>"; };
-		184C685B1C89A0FE006DF9E3 /* Player close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@3x.png"; sourceTree = "<group>"; };
 		184C686A1C89A0FE006DF9E3 /* MRVideoHUDView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVideoHUDView.h; sourceTree = "<group>"; };
 		184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRVideoHUDView.m; sourceTree = "<group>"; };
 		184C687D1C8AC35E006DF9E3 /* MRVLCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRVLCPlayer.h; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		18D628DC1C7DC4AB00DDA9E7 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		18D628DD1C7DC4AB00DDA9E7 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		18D628DE1C7DC4AB00DDA9E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		422C88C51C9022830098CE64 /* Player close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@2x.png"; sourceTree = "<group>"; };
+		422C88C61C9022830098CE64 /* Player close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@3x.png"; sourceTree = "<group>"; };
 		42B02DA91C8E70D9002ACACC /* Full Screen Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon.png"; sourceTree = "<group>"; };
 		42B02DAA1C8E70D9002ACACC /* Full Screen Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@2x.png"; sourceTree = "<group>"; };
 		42B02DAB1C8E70D9002ACACC /* Full Screen Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@3x.png"; sourceTree = "<group>"; };
@@ -161,8 +161,8 @@
 				42B02DB81C8E70D9002ACACC /* Video Bg.png */,
 				42B02DB91C8E70D9002ACACC /* Video Bg@2x.png */,
 				42B02DBA1C8E70D9002ACACC /* Video Bg@3x.png */,
-				184C685A1C89A0FE006DF9E3 /* Player close@2x.png */,
-				184C685B1C89A0FE006DF9E3 /* Player close@3x.png */,
+				422C88C51C9022830098CE64 /* Player close@2x.png */,
+				422C88C61C9022830098CE64 /* Player close@3x.png */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -297,7 +297,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				42B02DBD1C8E70D9002ACACC /* Full Screen Icon@3x.png in Resources */,
-				184C686F1C89A0FE006DF9E3 /* Player close@3x.png in Resources */,
 				42B02DC51C8E70D9002ACACC /* Play Icon@2x.png in Resources */,
 				42E8F5961C8E7F6600A3A595 /* Sound Icon@3x.png in Resources */,
 				42E8F58C1C8E76B800A3A595 /* Player Control Nob.png in Resources */,
@@ -307,7 +306,9 @@
 				18D628A71C7DC3B800DDA9E7 /* Assets.xcassets in Resources */,
 				42B02DCB1C8E70D9002ACACC /* Video Bg@2x.png in Resources */,
 				18D628A51C7DC3B800DDA9E7 /* Main.storyboard in Resources */,
+				422C88C81C9022830098CE64 /* Player close@3x.png in Resources */,
 				42B02DBC1C8E70D9002ACACC /* Full Screen Icon@2x.png in Resources */,
+				422C88C71C9022830098CE64 /* Player close@2x.png in Resources */,
 				42E8F5941C8E7F6600A3A595 /* Sound Icon.png in Resources */,
 				42B02DC41C8E70D9002ACACC /* Play Icon.png in Resources */,
 				42B02DC01C8E70D9002ACACC /* Min. Icon@3x.png in Resources */,
@@ -319,7 +320,6 @@
 				42B02DC61C8E70D9002ACACC /* Play Icon@3x.png in Resources */,
 				42B02DC21C8E70D9002ACACC /* Pause Icon@2x.png in Resources */,
 				42B02DC11C8E70D9002ACACC /* Pause Icon.png in Resources */,
-				184C686E1C89A0FE006DF9E3 /* Player close@2x.png in Resources */,
 				42B02DC31C8E70D9002ACACC /* Pause Icon@3x.png in Resources */,
 				42E8F5951C8E7F6600A3A595 /* Sound Icon@2x.png in Resources */,
 			);

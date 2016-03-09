@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MRVideoHUDView.h"
 #import "MRProgressSlider.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @protocol MRVideoControlViewDelegate <NSObject>
 @optional
@@ -40,6 +41,8 @@
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) MRVideoHUDView *indicatorView;
 @property (nonatomic, strong) CALayer *bgLayer;
+@property (nonatomic,strong) UISlider *volumeSlider;
+@property (nonatomic,strong) MPVolumeView *volumeView;
 
 
 - (void)animateHide;

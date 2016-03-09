@@ -7,7 +7,7 @@
 //
 
 #import "MRVLCPlayer.h"
-#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
@@ -37,7 +37,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self setupView];
     
     [self setupControlView];
-    
 }
 
 
@@ -68,9 +67,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 - (void)setupPlayer {
-    AVAudioSession *session = [AVAudioSession sharedInstance];
-    NSError *sesstionError;
-    [session setCategory:AVAudioSessionCategoryPlayback error:&sesstionError];
     [self.player setDrawable:self];
     self.player.media = [[VLCMedia alloc] initWithURL:self.mediaURL];
 }
@@ -154,6 +150,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 #pragma mark - Delegate
 #pragma mark VLC
 - (void)mediaPlayerStateChanged:(NSNotification *)aNotification {
+    // Every Time change the state,The VLC will draw video layer on this layer.
     [self bringSubviewToFront:self.controlView];
     if (self.player.media.state == VLCMediaStateBuffering) {
         self.controlView.indicatorView.hidden = NO;
@@ -196,12 +193,13 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
 - (void)controlViewFingerMoveUp {
     
-    [self.player.audio volumeUp];
+    self.controlView.volumeSlider.value += 0.05;
+    
 }
 
 - (void)controlViewFingerMoveDown {
     
-    [self.player.audio volumeDown];
+    self.controlView.volumeSlider.value -= 0.05;
 }
 
 #pragma mark - Property
@@ -231,7 +229,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     _isFullscreenModel = isFullscreenModel;
     
     if (isFullscreenModel) {
-        //全屏模式
+        //Full Screen
         _originFrame = self.frame;
         CGFloat height = [[UIScreen mainScreen] bounds].size.width;
         CGFloat width = [[UIScreen mainScreen] bounds].size.height;
@@ -246,7 +244,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
         } completion:^(BOOL finished) {}];
         
     }else {
-        //自定义模式
+        //Custom Screen
         [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval animations:^{
             self.transform = CGAffineTransformIdentity;
             self.frame = _originFrame;
@@ -259,8 +257,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
         
     }
-    
-    
+
 }
 
 @end

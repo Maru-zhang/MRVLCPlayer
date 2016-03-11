@@ -18,7 +18,7 @@ static const CGFloat MRProgressWidth = 8.0f;
 }
 
 - (CGRect)trackRectForBounds:(CGRect)bounds {
-    return CGRectMake(0, self.bounds.size.height / 2 - MRProgressWidth / 2, self.bounds.size.width, MRProgressWidth);
+    return CGRectMake(0, self.bounds.size.height / 2, self.bounds.size.width, MRProgressWidth);
 }
 
 @end

@@ -10,9 +10,9 @@
 
 #define MRRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
-static const CGFloat kVideoControlBarHeight = 35.0;
+static const CGFloat kVideoControlBarHeight = 40.0;
 static const CGFloat kVideoControlSliderHeight = 10.0;
-static const CGFloat kVideoControlAnimationTimeinterval = 0.3;
+static const CGFloat kVideoControlAnimationTimeinterval = 1;
 static const CGFloat kVideoControlTimeLabelFontSize = 10.0;
 static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
 static const CGFloat kVideoControlCorrectValue = 3;
@@ -40,8 +40,8 @@ static const CGFloat kVideoControlCorrectValue = 3;
     self.topBar.frame             = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), CGRectGetWidth(self.bounds), kVideoControlBarHeight);
     self.closeButton.frame        = CGRectMake(CGRectGetWidth(self.topBar.bounds) - CGRectGetWidth(self.closeButton.bounds), CGRectGetMinX(self.topBar.bounds), CGRectGetWidth(self.closeButton.bounds), CGRectGetHeight(self.closeButton.bounds));
     self.bottomBar.frame          = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetHeight(self.bounds) - kVideoControlBarHeight, CGRectGetWidth(self.bounds), kVideoControlBarHeight);
-    self.progressSlider.frame     = CGRectMake(0, 0, CGRectGetWidth(self.bounds), kVideoControlSliderHeight);
-    self.playButton.frame         = CGRectMake(CGRectGetMinX(self.bottomBar.bounds), CGRectGetHeight(self.bottomBar.bounds)/2 - CGRectGetHeight(self.playButton.bounds)/2 + CGRectGetHeight(self.progressSlider.frame) / 2, CGRectGetWidth(self.playButton.bounds), CGRectGetHeight(self.playButton.bounds));
+    self.progressSlider.frame     = CGRectMake(0, -0, CGRectGetWidth(self.bounds), kVideoControlSliderHeight);
+    self.playButton.frame         = CGRectMake(CGRectGetMinX(self.bottomBar.bounds), CGRectGetHeight(self.bottomBar.bounds)/2 - CGRectGetHeight(self.playButton.bounds)/2 + CGRectGetHeight(self.progressSlider.frame) * 0.6, CGRectGetWidth(self.playButton.bounds), CGRectGetHeight(self.playButton.bounds));
     self.pauseButton.frame        = self.playButton.frame;
     self.fullScreenButton.frame   = CGRectMake(CGRectGetWidth(self.bottomBar.bounds) - CGRectGetWidth(self.fullScreenButton.bounds) - 5, self.playButton.frame.origin.y, CGRectGetWidth(self.fullScreenButton.bounds), CGRectGetHeight(self.fullScreenButton.bounds));
     self.shrinkScreenButton.frame = self.fullScreenButton.frame;
@@ -55,6 +55,8 @@ static const CGFloat kVideoControlCorrectValue = 3;
     [super didMoveToSuperview];
 }
 
+
+#pragma mark - Public Method
 - (void)animateHide
 {
     [UIView animateWithDuration:kVideoControlAnimationTimeinterval animations:^{
@@ -85,9 +87,6 @@ static const CGFloat kVideoControlCorrectValue = 3;
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(animateHide) object:nil];
 }
 
-- (void)responseTapImmediately {
-    self.bottomBar.hidden ? [self animateShow] : [self animateHide];
-}
 
 #pragma mark - Private Method
 - (void)setupView {
@@ -114,6 +113,9 @@ static const CGFloat kVideoControlCorrectValue = 3;
 
 }
 
+- (void)responseTapImmediately {
+    self.bottomBar.hidden ? [self animateShow] : [self animateHide];
+}
 
 #pragma mark - Override
 #pragma mark Touch Event

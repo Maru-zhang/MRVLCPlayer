@@ -25,6 +25,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 #pragma mark - Life Cycle
 - (instancetype)init {
     if (self = [super init]) {
+        
+        [self setupNotification];
+        
+        NSLog(@"%d",[UIDevice currentDevice].isGeneratingDeviceOrientationNotifications);
+        
     }
     return self;
 }
@@ -37,6 +42,10 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self setupView];
     
     [self setupControlView];
+}
+
+- (void)dealloc {
+    NSLog(@"Destory");
 }
 
 
@@ -58,6 +67,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     self.player.delegate = nil;
     self.player.drawable = nil;
     self.player = nil;
+    
+    // 注销通知
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [self removeFromSuperview];
 }
 
@@ -84,6 +98,56 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self.controlView.progressSlider addTarget:self action:@selector(progressClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.soundButton addTarget:self action:@selector(soundClick) forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (void)setupNotification {
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(orientationChange)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil
+     ];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillEnterForeground)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+}
+
+
+#pragma mark Notification Handler
+/**
+ *    屏幕旋转处理
+ */
+- (void)orientationChange {
+    
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        [self fullScreenButtonClick];
+    }else {
+        [self shrinkScreenButtonClick];
+    }
+}
+
+/**
+ *    即将进入后台的处理
+ */
+- (void)applicationWillEnterForeground {
+    [self play];
+}
+
+/**
+ *    即将返回前台的处理
+ */
+- (void)applicationWillResignActive {
+    [self pause];
+}
+
 
 #pragma mark Button Event
 - (void)playButtonClick {
@@ -229,7 +293,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     _isFullscreenModel = isFullscreenModel;
     
     if (isFullscreenModel) {
-        //Full Screen
         _originFrame = self.frame;
         CGFloat height = [[UIScreen mainScreen] bounds].size.width;
         CGFloat width = [[UIScreen mainScreen] bounds].size.height;
@@ -244,7 +307,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
         } completion:^(BOOL finished) {}];
         
     }else {
-        //Custom Screen
         [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval animations:^{
             self.transform = CGAffineTransformIdentity;
             self.frame = _originFrame;

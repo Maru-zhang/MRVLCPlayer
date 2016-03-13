@@ -317,7 +317,15 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
         CGFloat width = [[UIScreen mainScreen] bounds].size.height;
         CGRect frame = CGRectMake((height - width) / 2, (width - height) / 2, width, height);
         [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval animations:^{
-            self.frame = self.frame = [[UIScreen mainScreen] bounds];
+            /**
+             *    此判断是为了适配项目在Deployment Info中是否勾选了横屏
+             */
+            if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+                self.frame = frame;
+                self.transform = CGAffineTransformMakeRotation(M_PI_2);
+            }else {
+                self.frame = self.frame = [[UIScreen mainScreen] bounds];
+            }
             self.controlView.frame = self.bounds;
             [self.controlView layoutIfNeeded];
             self.controlView.fullScreenButton.hidden = YES;

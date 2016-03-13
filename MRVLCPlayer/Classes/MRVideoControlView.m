@@ -12,7 +12,7 @@
 
 static const CGFloat kVideoControlBarHeight = 40.0;
 static const CGFloat kVideoControlSliderHeight = 10.0;
-static const CGFloat kVideoControlAnimationTimeinterval = 1;
+static const CGFloat kVideoControlAnimationTimeinterval = 0.3;
 static const CGFloat kVideoControlTimeLabelFontSize = 10.0;
 static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
 static const CGFloat kVideoControlCorrectValue = 3;
@@ -36,7 +36,7 @@ static const CGFloat kVideoControlCorrectValue = 3;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
     self.topBar.frame             = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetMinY(self.bounds), CGRectGetWidth(self.bounds), kVideoControlBarHeight);
     self.closeButton.frame        = CGRectMake(CGRectGetWidth(self.topBar.bounds) - CGRectGetWidth(self.closeButton.bounds), CGRectGetMinX(self.topBar.bounds), CGRectGetWidth(self.closeButton.bounds), CGRectGetHeight(self.closeButton.bounds));
     self.bottomBar.frame          = CGRectMake(CGRectGetMinX(self.bounds), CGRectGetHeight(self.bounds) - kVideoControlBarHeight, CGRectGetWidth(self.bounds), kVideoControlBarHeight);
@@ -60,8 +60,8 @@ static const CGFloat kVideoControlCorrectValue = 3;
 - (void)animateHide
 {
     [UIView animateWithDuration:kVideoControlAnimationTimeinterval animations:^{
-        self.topBar.hidden = YES;
-        self.bottomBar.hidden = YES;
+        self.topBar.alpha = 0;
+        self.bottomBar.alpha = 0;
     } completion:^(BOOL finished) {
     }];
 }
@@ -69,8 +69,8 @@ static const CGFloat kVideoControlCorrectValue = 3;
 - (void)animateShow
 {
     [UIView animateWithDuration:kVideoControlAnimationTimeinterval animations:^{
-        self.topBar.hidden = NO;
-        self.bottomBar.hidden = NO;
+        self.topBar.alpha = 1;
+        self.bottomBar.alpha = 1;
     } completion:^(BOOL finished) {
         [self autoFadeOutControlBar];
     }];
@@ -114,7 +114,7 @@ static const CGFloat kVideoControlCorrectValue = 3;
 }
 
 - (void)responseTapImmediately {
-    self.bottomBar.hidden ? [self animateShow] : [self animateHide];
+    self.bottomBar.alpha == 0 ? [self animateShow] : [self animateHide];
 }
 
 #pragma mark - Override

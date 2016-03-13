@@ -26,7 +26,7 @@
     
     player.frame = CGRectMake(0, 100, 375, 375 / 16 * 9);
     
-    player.mediaURL = [NSURL URLWithString:@"http://202.198.176.113/video002/2015/slzs.rmvb"];
+    player.mediaURL = [NSURL URLWithString:@"http://202.198.176.113/video002/2015/dh47.rmvb"];
     
     [player showInView:self.view];
 }

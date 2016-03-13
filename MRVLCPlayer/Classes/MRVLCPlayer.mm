@@ -8,6 +8,7 @@
 
 #import "MRVLCPlayer.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import <AVFoundation/AVFoundation.h>
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
@@ -27,8 +28,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     if (self = [super init]) {
         
         [self setupNotification];
-        
-        NSLog(@"%d",[UIDevice currentDevice].isGeneratingDeviceOrientationNotifications);
         
     }
     return self;
@@ -104,7 +103,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(orientationChange)
+                                             selector:@selector(orientationHandler)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil
      ];
@@ -120,18 +119,37 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
                                                object:nil];
 }
 
+/**
+ *    强制横屏
+ *
+ *    @param orientation 横屏方向
+ */
+- (void)forceChangeOrientation:(UIInterfaceOrientation)orientation
+{
+    int val = orientation;
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
+        SEL selector = NSSelectorFromString(@"setOrientation:");
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
+        [invocation setSelector:selector];
+        [invocation setTarget:[UIDevice currentDevice]];
+        [invocation setArgument:&val atIndex:2];
+        [invocation invoke];
+    }
+}
 
 #pragma mark Notification Handler
 /**
  *    屏幕旋转处理
  */
-- (void)orientationChange {
+- (void)orientationHandler {
     
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
-        [self fullScreenButtonClick];
+        self.isFullscreenModel = YES;
+        
     }else {
-        [self shrinkScreenButtonClick];
+        self.isFullscreenModel = NO;
     }
+    [self.controlView autoFadeOutControlBar];
 }
 
 /**
@@ -166,13 +184,14 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 - (void)fullScreenButtonClick {
-    [self.controlView autoFadeOutControlBar];
-    self.isFullscreenModel = YES;
+    
+    [self forceChangeOrientation:UIInterfaceOrientationLandscapeRight];
+
 }
 
 - (void)shrinkScreenButtonClick {
-    [self.controlView autoFadeOutControlBar];
-    self.isFullscreenModel = NO;
+    
+    [self forceChangeOrientation:UIInterfaceOrientationPortrait];;
 }
 
 - (void)progressClick {
@@ -296,10 +315,9 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
         _originFrame = self.frame;
         CGFloat height = [[UIScreen mainScreen] bounds].size.width;
         CGFloat width = [[UIScreen mainScreen] bounds].size.height;
-        CGRect frame = CGRectMake((height - width) / 2, (width - height) / 2, width, height);;
+        CGRect frame = CGRectMake((height - width) / 2, (width - height) / 2, width, height);
         [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval animations:^{
-            self.frame = frame;
-            self.transform = CGAffineTransformMakeRotation(M_PI_2);
+            self.frame = self.frame = [[UIScreen mainScreen] bounds];
             self.controlView.frame = self.bounds;
             [self.controlView layoutIfNeeded];
             self.controlView.fullScreenButton.hidden = YES;
@@ -321,5 +339,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     }
 
 }
+
 
 @end

@@ -8,7 +8,6 @@
 
 #import "MRVideoHUDView.h"
 
-#define kHUDCenter CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
 
 static const NSTimeInterval kHUDCycleTimeInterval = 0.8f;
 static const CGFloat kHUDCycleLineWidth = 3.0f;
@@ -93,6 +92,59 @@ static const CGFloat kHUDCycleLineWidth = 3.0f;
 
 - (CGSize)getCycleLayerSize {
     return CGSizeMake(CGRectGetWidth(self.bounds) - kHUDCycleLineWidth, CGRectGetHeight(self.bounds) - kHUDCycleLineWidth);
+}
+
+@end
+
+@interface MRVideoAlertView ()
+
+@end
+@implementation MRVideoAlertView
+
++ (instancetype)shareInstance {
+    static MRVideoAlertView *alertView = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        alertView = [[MRVideoAlertView alloc] init];
+    });
+    return alertView;
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _msgLable = [UILabel new];
+        _msgLable.frame = self.bounds;
+        _msgLable.backgroundColor = [UIColor redColor];
+        _msgLable.textColor = [UIColor whiteColor];
+        _msgLable.textAlignment = NSTextAlignmentCenter;
+        _msgLable.text = @"dsadsa";
+        [self addSubview:_msgLable];
+        self.backgroundColor = [UIColor clearColor];
+    }
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    
+    self.backgroundColor = [UIColor redColor];
+}
+
+- (void)dismiss{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 0;
+    }];
+}
+
+- (void)show {
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.alpha = 1;
+//    }];
+    
+    self.alpha = 1;
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(dismiss) object:nil];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:2.0];
 }
 
 @end

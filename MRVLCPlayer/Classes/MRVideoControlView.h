@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MRVideoHUDView.h"
-#import "MRProgressSlider.h"
 #import <MediaPlayer/MediaPlayer.h>
+@class MRProgressSlider;
+
+#define kMRSCREEN_BOUNDS [[UIScreen mainScreen] bounds]
 
 @protocol MRVideoControlViewDelegate <NSObject>
 @optional
@@ -24,6 +26,7 @@
 - (void)controlViewshrinkScreenButtonDidClick;
 
 @end
+
 
 @interface MRVideoControlView : UIView
 
@@ -50,5 +53,8 @@
 - (void)autoFadeOutControlBar;
 - (void)cancelAutoFadeOutControlBar;
 
-
 @end
+
+@interface MRProgressSlider : UISlider
+@end
+

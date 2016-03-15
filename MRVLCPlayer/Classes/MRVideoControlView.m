@@ -10,16 +10,17 @@
 
 #define MRRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
+static const CGFloat MRProgressWidth = 3.0f;
 static const CGFloat kVideoControlBarHeight = 40.0;
 static const CGFloat kVideoControlSliderHeight = 10.0;
 static const CGFloat kVideoControlAnimationTimeinterval = 0.3;
 static const CGFloat kVideoControlTimeLabelFontSize = 10.0;
 static const CGFloat kVideoControlBarAutoFadeOutTimeinterval = 4.0;
 static const CGFloat kVideoControlCorrectValue = 3;
-
-
+@interface MRVideoControlView ()
+@property (nonatomic,strong) MRVideoAlertView *alertView;
+@end
 @implementation MRVideoControlView
-
 
 #pragma mark - Life Cycle
 - (instancetype)initWithFrame:(CGRect)frame
@@ -48,6 +49,8 @@ static const CGFloat kVideoControlCorrectValue = 3;
     self.indicatorView.center     = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
     self.soundButton.frame        = CGRectMake(CGRectGetMaxX(self.playButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.soundButton.bounds), CGRectGetHeight(self.soundButton.bounds));
     self.timeLabel.frame          = CGRectMake(CGRectGetMaxX(self.soundButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.bottomBar.bounds), CGRectGetHeight(self.timeLabel.bounds));
+    self.alertView.center         = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
+    
 }
 
 - (void)didMoveToSuperview
@@ -98,6 +101,7 @@ static const CGFloat kVideoControlCorrectValue = 3;
     [self addSubview:self.indicatorView];
     [self addSubview:self.bottomBar];
     [self addSubview:self.indicatorView];
+    [self addSubview:self.alertView];
 
     [self.topBar addSubview:self.closeButton];
     [self.bottomBar addSubview:self.playButton];
@@ -129,6 +133,10 @@ static const CGFloat kVideoControlCorrectValue = 3;
     CGFloat d_value_x = nowPoint.x - prePoint.x;
     CGFloat d_value_y = nowPoint.y - prePoint.y;
     
+
+    [self.alertView show];
+    
+    
     if (ABS(d_value_x) > ABS(d_value_y)) {
             [self.topBar setHidden:NO];
             [self.bottomBar setHidden:NO];
@@ -142,15 +150,28 @@ static const CGFloat kVideoControlCorrectValue = 3;
             }
         }
     }else {
-        if (d_value_y > kVideoControlCorrectValue) {
-            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveDown)]) {
-                [self.delegate controlViewFingerMoveDown];
+        
+        if (nowPoint.x > kMRSCREEN_BOUNDS.size.width / 2) {
+            // 音量大小
+            if (d_value_y > kVideoControlCorrectValue) {
+                if ([_delegate respondsToSelector:@selector(controlViewFingerMoveDown)]) {
+                    [self.delegate controlViewFingerMoveDown];
+                }
+            }else if(d_value_y < -kVideoControlCorrectValue) {
+                if ([_delegate respondsToSelector:@selector(controlViewFingerMoveUp)]) {
+                    [self.delegate controlViewFingerMoveUp];
+                }
             }
-        }else if(d_value_y < -kVideoControlCorrectValue) {
-            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveUp)]) {
-                [self.delegate controlViewFingerMoveUp];
+        }else {
+            // 亮度大小
+            if (d_value_y > kVideoControlCorrectValue) {
+                [UIScreen mainScreen].brightness -= 0.01;
+            }else if(d_value_y < -kVideoControlCorrectValue) {
+                [UIScreen mainScreen].brightness += 0.01;
             }
         }
+        
+        
     }
     
 }
@@ -312,5 +333,17 @@ static const CGFloat kVideoControlCorrectValue = 3;
     return _volumeView;
 }
 
+- (MRVideoAlertView *)alertView {
+    if (!_alertView) {
+        _alertView = [MRVideoAlertView shareInstance];
+        _alertView.bounds = CGRectMake(0, 0, 100, 50);
+    }
+    return _alertView;
+}
 
+@end
+@implementation MRProgressSlider
+- (CGRect)trackRectForBounds:(CGRect)bounds {
+    return CGRectMake(0, self.bounds.size.height / 2, self.bounds.size.width, MRProgressWidth);
+}
 @end

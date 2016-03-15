@@ -44,7 +44,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 - (void)dealloc {
-    NSLog(@"Destory");
 }
 
 
@@ -313,8 +312,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     
     if (isFullscreenModel) {
         _originFrame = self.frame;
-        CGFloat height = [[UIScreen mainScreen] bounds].size.width;
-        CGFloat width = [[UIScreen mainScreen] bounds].size.height;
+        CGFloat height = kMRSCREEN_BOUNDS.size.width;
+        CGFloat width = kMRSCREEN_BOUNDS.size.height;
         CGRect frame = CGRectMake((height - width) / 2, (width - height) / 2, width, height);
         [UIView animateWithDuration:kVideoPlayerAnimationTimeinterval animations:^{
             /**
@@ -324,7 +323,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
                 self.frame = frame;
                 self.transform = CGAffineTransformMakeRotation(M_PI_2);
             }else {
-                self.frame = self.frame = [[UIScreen mainScreen] bounds];
+                self.frame = self.frame = kMRSCREEN_BOUNDS;
             }
             self.controlView.frame = self.bounds;
             [self.controlView layoutIfNeeded];

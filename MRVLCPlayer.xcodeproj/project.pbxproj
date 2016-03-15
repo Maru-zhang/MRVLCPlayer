@@ -49,7 +49,6 @@
 		42E8F58A1C8E76B800A3A595 /* Player Control Nob@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E8F5871C8E76B800A3A595 /* Player Control Nob@3x.png */; };
 		42E8F58B1C8E76B800A3A595 /* Player Control Nob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E8F5881C8E76B800A3A595 /* Player Control Nob@2x.png */; };
 		42E8F58C1C8E76B800A3A595 /* Player Control Nob.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E8F5891C8E76B800A3A595 /* Player Control Nob.png */; };
-		42E8F58F1C8E776500A3A595 /* MRProgressSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E8F58E1C8E776500A3A595 /* MRProgressSlider.m */; };
 		42E8F5941C8E7F6600A3A595 /* Sound Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E8F5911C8E7F6600A3A595 /* Sound Icon.png */; };
 		42E8F5951C8E7F6600A3A595 /* Sound Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E8F5921C8E7F6600A3A595 /* Sound Icon@2x.png */; };
 		42E8F5961C8E7F6600A3A595 /* Sound Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42E8F5931C8E7F6600A3A595 /* Sound Icon@3x.png */; };
@@ -105,8 +104,6 @@
 		42E8F5871C8E76B800A3A595 /* Player Control Nob@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob@3x.png"; sourceTree = "<group>"; };
 		42E8F5881C8E76B800A3A595 /* Player Control Nob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob@2x.png"; sourceTree = "<group>"; };
 		42E8F5891C8E76B800A3A595 /* Player Control Nob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob.png"; sourceTree = "<group>"; };
-		42E8F58D1C8E776500A3A595 /* MRProgressSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRProgressSlider.h; sourceTree = "<group>"; };
-		42E8F58E1C8E776500A3A595 /* MRProgressSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRProgressSlider.m; sourceTree = "<group>"; };
 		42E8F5901C8E7A7800A3A595 /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
 		42E8F5911C8E7F6600A3A595 /* Sound Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon.png"; sourceTree = "<group>"; };
 		42E8F5921C8E7F6600A3A595 /* Sound Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon@2x.png"; sourceTree = "<group>"; };
@@ -170,8 +167,6 @@
 		184C68661C89A0FE006DF9E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				42E8F58D1C8E776500A3A595 /* MRProgressSlider.h */,
-				42E8F58E1C8E776500A3A595 /* MRProgressSlider.m */,
 				184C686A1C89A0FE006DF9E3 /* MRVideoHUDView.h */,
 				184C686B1C89A0FE006DF9E3 /* MRVideoHUDView.m */,
 				42B02DCD1C8E70FF002ACACC /* MRVideoControlView.h */,
@@ -334,7 +329,6 @@
 			files = (
 				184C687F1C8AC35E006DF9E3 /* MRVLCPlayer.mm in Sources */,
 				42B02DCF1C8E70FF002ACACC /* MRVideoControlView.m in Sources */,
-				42E8F58F1C8E776500A3A595 /* MRProgressSlider.m in Sources */,
 				18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */,
 				184C687B1C89A0FE006DF9E3 /* MRVideoHUDView.m in Sources */,
 				18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */,

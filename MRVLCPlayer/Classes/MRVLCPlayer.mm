@@ -10,11 +10,12 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 
+#define kMediaLength self.player.media.length
+
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
 @interface MRVLCPlayer ()
 {
-    VLCTime *_totalTime;
     CGRect _originFrame;
 }
 @property (nonatomic,strong) VLCMediaPlayer *player;
@@ -43,12 +44,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self setupControlView];
 }
 
-- (void)dealloc {
-}
-
 
 #pragma mark - Public Method
 - (void)showInView:(UIView *)view {
+    
+    NSAssert(_mediaURL != nil, @"MRVLCPlayer Exception: mediaURL could not be nil!");
     
     [view addSubview:self];
     
@@ -195,9 +195,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
 - (void)progressClick {
 
-    if (!_totalTime) { _totalTime = self.player.media.length; }
-    
-    int targetIntvalue = (int)(self.controlView.progressSlider.value * (float)_totalTime.intValue);
+    int targetIntvalue = (int)(self.controlView.progressSlider.value * (float)kMediaLength.intValue);
     
     VLCTime *targetTime = [[VLCTime alloc] initWithInt:targetIntvalue];
     
@@ -226,7 +224,9 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 }
 
 - (void)stop {
-    
+    [self.player stop];
+    self.controlView.playButton.hidden = NO;
+    self.controlView.pauseButton.hidden = YES;
 }
 
 #pragma mark - Delegate
@@ -240,6 +240,8 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     }else if (self.player.media.state == VLCMediaStatePlaying) {
         self.controlView.indicatorView.hidden = YES;
         self.controlView.bgLayer.hidden = YES;
+    }else if (self.player.state == VLCMediaPlayerStateStopped) {
+        [self stop];
     }
 }
 
@@ -250,14 +252,12 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     if (self.controlView.progressSlider.state != UIControlStateNormal) {
         return;
     }
-
-    if (!_totalTime) { _totalTime = self.player.media.length;}
     
-    float precentValue = ([self.player.time.numberValue floatValue]) / ([_totalTime.numberValue floatValue]);
+    float precentValue = ([self.player.time.numberValue floatValue]) / ([kMediaLength.numberValue floatValue]);
     
     [self.controlView.progressSlider setValue:precentValue animated:YES];
     
-    [self.controlView.timeLabel setText:[NSString stringWithFormat:@"%@/%@",_player.time.stringValue,_totalTime.stringValue]];
+    [self.controlView.timeLabel setText:[NSString stringWithFormat:@"%@/%@",_player.time.stringValue,kMediaLength.stringValue]];
 }
 
 #pragma mark ControlView
@@ -276,7 +276,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 - (void)controlViewFingerMoveUp {
     
     self.controlView.volumeSlider.value += 0.05;
-    
 }
 
 - (void)controlViewFingerMoveDown {

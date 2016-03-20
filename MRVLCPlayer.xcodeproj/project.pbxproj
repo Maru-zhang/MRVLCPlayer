@@ -11,7 +11,6 @@
 		184C687F1C8AC35E006DF9E3 /* MRVLCPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 184C687E1C8AC35E006DF9E3 /* MRVLCPlayer.mm */; };
 		18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289B1C7DC3B800DDA9E7 /* main.m */; };
 		18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6289E1C7DC3B800DDA9E7 /* AppDelegate.m */; };
-		18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D628A11C7DC3B800DDA9E7 /* ViewController.m */; };
 		18D628A51C7DC3B800DDA9E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D628A31C7DC3B800DDA9E7 /* Main.storyboard */; };
 		18D628A71C7DC3B800DDA9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D628A61C7DC3B800DDA9E7 /* Assets.xcassets */; };
 		18D628AA1C7DC3B800DDA9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D628A81C7DC3B800DDA9E7 /* LaunchScreen.storyboard */; };
@@ -30,6 +29,9 @@
 		18D628EA1C7DC4AB00DDA9E7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D628DE1C7DC4AB00DDA9E7 /* AudioToolbox.framework */; };
 		422C88C71C9022830098CE64 /* Player close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422C88C51C9022830098CE64 /* Player close@2x.png */; };
 		422C88C81C9022830098CE64 /* Player close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422C88C61C9022830098CE64 /* Player close@3x.png */; };
+		4248F6101C9E8DFC00835E8E /* LocalViewConrtoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248F60F1C9E8DFC00835E8E /* LocalViewConrtoller.m */; };
+		4248F6131C9E8E0E00835E8E /* RemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248F6121C9E8E0E00835E8E /* RemoteViewController.m */; };
+		4248F61C1C9E9E2300835E8E /* 02.mov in Resources */ = {isa = PBXBuildFile; fileRef = 4248F61B1C9E9E2300835E8E /* 02.mov */; };
 		42B02DBB1C8E70D9002ACACC /* Full Screen Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B02DA91C8E70D9002ACACC /* Full Screen Icon.png */; };
 		42B02DBC1C8E70D9002ACACC /* Full Screen Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B02DAA1C8E70D9002ACACC /* Full Screen Icon@2x.png */; };
 		42B02DBD1C8E70D9002ACACC /* Full Screen Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42B02DAB1C8E70D9002ACACC /* Full Screen Icon@3x.png */; };
@@ -63,8 +65,6 @@
 		18D6289B1C7DC3B800DDA9E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18D6289D1C7DC3B800DDA9E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D6289E1C7DC3B800DDA9E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		18D628A01C7DC3B800DDA9E7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		18D628A11C7DC3B800DDA9E7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		18D628A41C7DC3B800DDA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18D628A61C7DC3B800DDA9E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18D628A91C7DC3B800DDA9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -84,6 +84,11 @@
 		18D628DE1C7DC4AB00DDA9E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		422C88C51C9022830098CE64 /* Player close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@2x.png"; sourceTree = "<group>"; };
 		422C88C61C9022830098CE64 /* Player close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player close@3x.png"; sourceTree = "<group>"; };
+		4248F60E1C9E8DFC00835E8E /* LocalViewConrtoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalViewConrtoller.h; sourceTree = "<group>"; };
+		4248F60F1C9E8DFC00835E8E /* LocalViewConrtoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalViewConrtoller.m; sourceTree = "<group>"; };
+		4248F6111C9E8E0E00835E8E /* RemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteViewController.h; sourceTree = "<group>"; };
+		4248F6121C9E8E0E00835E8E /* RemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteViewController.m; sourceTree = "<group>"; };
+		4248F61B1C9E9E2300835E8E /* 02.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 02.mov; sourceTree = "<group>"; };
 		42B02DA91C8E70D9002ACACC /* Full Screen Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon.png"; sourceTree = "<group>"; };
 		42B02DAA1C8E70D9002ACACC /* Full Screen Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@2x.png"; sourceTree = "<group>"; };
 		42B02DAB1C8E70D9002ACACC /* Full Screen Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@3x.png"; sourceTree = "<group>"; };
@@ -104,7 +109,6 @@
 		42E8F5871C8E76B800A3A595 /* Player Control Nob@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob@3x.png"; sourceTree = "<group>"; };
 		42E8F5881C8E76B800A3A595 /* Player Control Nob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob@2x.png"; sourceTree = "<group>"; };
 		42E8F5891C8E76B800A3A595 /* Player Control Nob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Player Control Nob.png"; sourceTree = "<group>"; };
-		42E8F5901C8E7A7800A3A595 /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
 		42E8F5911C8E7F6600A3A595 /* Sound Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon.png"; sourceTree = "<group>"; };
 		42E8F5921C8E7F6600A3A595 /* Sound Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon@2x.png"; sourceTree = "<group>"; };
 		42E8F5931C8E7F6600A3A595 /* Sound Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound Icon@3x.png"; sourceTree = "<group>"; };
@@ -196,12 +200,15 @@
 		18D628991C7DC3B800DDA9E7 /* MRVLCPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				4248F6161C9E962100835E8E /* Resource */,
 				184C68591C89A0FE006DF9E3 /* Asset */,
 				184C68661C89A0FE006DF9E3 /* Classes */,
 				18D6289D1C7DC3B800DDA9E7 /* AppDelegate.h */,
 				18D6289E1C7DC3B800DDA9E7 /* AppDelegate.m */,
-				18D628A01C7DC3B800DDA9E7 /* ViewController.h */,
-				18D628A11C7DC3B800DDA9E7 /* ViewController.m */,
+				4248F60E1C9E8DFC00835E8E /* LocalViewConrtoller.h */,
+				4248F60F1C9E8DFC00835E8E /* LocalViewConrtoller.m */,
+				4248F6111C9E8E0E00835E8E /* RemoteViewController.h */,
+				4248F6121C9E8E0E00835E8E /* RemoteViewController.m */,
 				18D628A31C7DC3B800DDA9E7 /* Main.storyboard */,
 				18D628A61C7DC3B800DDA9E7 /* Assets.xcassets */,
 				18D628A81C7DC3B800DDA9E7 /* LaunchScreen.storyboard */,
@@ -214,7 +221,6 @@
 		18D6289A1C7DC3B800DDA9E7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				42E8F5901C8E7A7800A3A595 /* 1.mp4 */,
 				18D628D31C7DC4AB00DDA9E7 /* libbz2.1.0.dylib */,
 				18D628D41C7DC4AB00DDA9E7 /* libz.1.dylib */,
 				18D628D51C7DC4AB00DDA9E7 /* libc++.1.dylib */,
@@ -231,6 +237,14 @@
 				18D6289B1C7DC3B800DDA9E7 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4248F6161C9E962100835E8E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4248F61B1C9E9E2300835E8E /* 02.mov */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +316,7 @@
 				42B02DCB1C8E70D9002ACACC /* Video Bg@2x.png in Resources */,
 				18D628A51C7DC3B800DDA9E7 /* Main.storyboard in Resources */,
 				422C88C81C9022830098CE64 /* Player close@3x.png in Resources */,
+				4248F61C1C9E9E2300835E8E /* 02.mov in Resources */,
 				42B02DBC1C8E70D9002ACACC /* Full Screen Icon@2x.png in Resources */,
 				422C88C71C9022830098CE64 /* Player close@2x.png in Resources */,
 				42E8F5941C8E7F6600A3A595 /* Sound Icon.png in Resources */,
@@ -328,10 +343,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				184C687F1C8AC35E006DF9E3 /* MRVLCPlayer.mm in Sources */,
+				4248F6131C9E8E0E00835E8E /* RemoteViewController.m in Sources */,
 				42B02DCF1C8E70FF002ACACC /* MRVideoControlView.m in Sources */,
-				18D628A21C7DC3B800DDA9E7 /* ViewController.m in Sources */,
 				184C687B1C89A0FE006DF9E3 /* MRVideoHUDView.m in Sources */,
 				18D6289F1C7DC3B800DDA9E7 /* AppDelegate.m in Sources */,
+				4248F6101C9E8DFC00835E8E /* LocalViewConrtoller.m in Sources */,
 				18D6289C1C7DC3B800DDA9E7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

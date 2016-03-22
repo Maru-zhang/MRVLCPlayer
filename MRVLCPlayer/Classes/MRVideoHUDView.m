@@ -71,6 +71,7 @@ static const CGFloat kHUDCycleLineWidth = 3.0f;
                         (id)[UIColor orangeColor].CGColor,
                         (id)[UIColor cyanColor].CGColor];
 
+
     gLayer_l.mask               = _leftLayer;
     gLayer_r.mask               = _rightLayer;
 

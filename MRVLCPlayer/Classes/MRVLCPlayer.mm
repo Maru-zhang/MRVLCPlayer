@@ -225,6 +225,7 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 
 - (void)stop {
     [self.player stop];
+    self.controlView.progressSlider.value = 1;
     self.controlView.playButton.hidden = NO;
     self.controlView.pauseButton.hidden = YES;
 }
@@ -242,7 +243,11 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
         self.controlView.bgLayer.hidden = YES;
     }else if (self.player.state == VLCMediaPlayerStateStopped) {
         [self stop];
+    }else {
+        self.controlView.indicatorView.hidden = NO;
+        self.controlView.bgLayer.hidden = NO;
     }
+    
 }
 
 - (void)mediaPlayerTimeChanged:(NSNotification *)aNotification {

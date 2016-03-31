@@ -89,6 +89,7 @@
 		4248F6111C9E8E0E00835E8E /* RemoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteViewController.h; sourceTree = "<group>"; };
 		4248F6121C9E8E0E00835E8E /* RemoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteViewController.m; sourceTree = "<group>"; };
 		4248F61B1C9E9E2300835E8E /* 02.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = 02.mov; sourceTree = "<group>"; };
+		4260671A1CACE6B500093A0B /* 1.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1.mkv; path = ../../../../Media/Movie/1.mkv; sourceTree = "<group>"; };
 		42B02DA91C8E70D9002ACACC /* Full Screen Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon.png"; sourceTree = "<group>"; };
 		42B02DAA1C8E70D9002ACACC /* Full Screen Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@2x.png"; sourceTree = "<group>"; };
 		42B02DAB1C8E70D9002ACACC /* Full Screen Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Full Screen Icon@3x.png"; sourceTree = "<group>"; };
@@ -242,6 +243,7 @@
 		4248F6161C9E962100835E8E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4260671A1CACE6B500093A0B /* 1.mkv */,
 				4248F61B1C9E9E2300835E8E /* 02.mov */,
 			);
 			path = Resource;

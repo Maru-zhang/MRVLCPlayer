@@ -17,6 +17,8 @@ static const CGFloat MRVideoControlAnimationTimeinterval = 0.3;
 static const CGFloat MRVideoControlTimeLabelFontSize = 10.0;
 static const CGFloat MRVideoControlBarAutoFadeOutTimeinterval = 4.0;
 static const CGFloat MRVideoControlCorrectValue = 3;
+
+
 @interface MRVideoControlView ()
 @property (nonatomic,strong) MRVideoAlertView *alertView;
 @end
@@ -47,8 +49,7 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     self.fullScreenButton.frame   = CGRectMake(CGRectGetWidth(self.bottomBar.bounds) - CGRectGetWidth(self.fullScreenButton.bounds) - 5, self.playButton.frame.origin.y, CGRectGetWidth(self.fullScreenButton.bounds), CGRectGetHeight(self.fullScreenButton.bounds));
     self.shrinkScreenButton.frame = self.fullScreenButton.frame;
     self.indicatorView.center     = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
-    self.soundButton.frame        = CGRectMake(CGRectGetMaxX(self.playButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.soundButton.bounds), CGRectGetHeight(self.soundButton.bounds));
-    self.timeLabel.frame          = CGRectMake(CGRectGetMaxX(self.soundButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.bottomBar.bounds), CGRectGetHeight(self.timeLabel.bounds));
+    self.timeLabel.frame          = CGRectMake(CGRectGetMaxX(self.playButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.bottomBar.bounds), CGRectGetHeight(self.timeLabel.bounds));
     self.alertView.center         = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
 }
 
@@ -102,14 +103,13 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     [self addSubview:self.indicatorView];
     [self addSubview:self.alertView];
 
-    [self.topBar addSubview:self.closeButton];
+    [self.topBar    addSubview:self.closeButton];
     [self.bottomBar addSubview:self.playButton];
     [self.bottomBar addSubview:self.pauseButton];
     [self.bottomBar addSubview:self.fullScreenButton];
     [self.bottomBar addSubview:self.shrinkScreenButton];
     [self.bottomBar addSubview:self.progressSlider];
     [self.bottomBar addSubview:self.timeLabel];
-    [self.bottomBar addSubview:self.soundButton];
     
     self.pauseButton.hidden = YES;
     self.shrinkScreenButton.hidden = YES;
@@ -257,14 +257,6 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     return _shrinkScreenButton;
 }
 
-- (UIButton *)soundButton {
-    if (!_soundButton) {
-        _soundButton = [[UIButton alloc] init];
-        [_soundButton setImage:[UIImage imageNamed:@"Sound Icon"] forState:UIControlStateNormal];
-        _soundButton.bounds = CGRectMake(0, 0, MRVideoControlBarHeight, MRVideoControlBarHeight);
-    }
-    return _soundButton;
-}
 
 - (MRProgressSlider *)progressSlider
 {

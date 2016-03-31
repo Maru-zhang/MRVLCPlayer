@@ -38,7 +38,6 @@
 @property (nonatomic, strong) UIButton *pauseButton;
 @property (nonatomic, strong) UIButton *fullScreenButton;
 @property (nonatomic, strong) UIButton *shrinkScreenButton;
-@property (nonatomic, strong) UIButton *soundButton;
 @property (nonatomic, strong) MRProgressSlider *progressSlider;
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UILabel *timeLabel;

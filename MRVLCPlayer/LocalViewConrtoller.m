@@ -31,7 +31,9 @@
     
     player.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width / 16 * 9);
     player.center = self.view.center;
-    player.mediaURL = [[NSBundle mainBundle] URLForResource:@"02" withExtension:@"mov"];
+//    player.mediaURL = [[NSBundle mainBundle] URLForResource:@"1" withExtension:@"mkv"];
+    
+    player.mediaURL = [NSURL fileURLWithPath:@"/Users/Maru/Documents/Media/Movie/1.mkv"];
 
     [player showInView:self.view.window];
 }

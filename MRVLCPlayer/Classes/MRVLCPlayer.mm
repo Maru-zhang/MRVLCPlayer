@@ -94,7 +94,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self.controlView.fullScreenButton addTarget:self action:@selector(fullScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.shrinkScreenButton addTarget:self action:@selector(shrinkScreenButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.controlView.progressSlider addTarget:self action:@selector(progressClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.controlView.soundButton addTarget:self action:@selector(soundClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setupNotification {
@@ -202,10 +201,6 @@ static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
     [self.player setTime:targetTime];
     
     [self.controlView autoFadeOutControlBar];
-}
-
-- (void)soundClick {
-    self.player.audio.muted ? self.player.audio.muted = NO : self.player.audio.muted = YES;
 }
 
 #pragma mark Player Logic

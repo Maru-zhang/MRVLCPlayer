@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MRVideoHUDView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "MRVideoConst.h"
 @class MRProgressSlider;
 
-#define kMRSCREEN_BOUNDS [[UIScreen mainScreen] bounds]
 
 @protocol MRVideoControlViewDelegate <NSObject>
 @optional
@@ -55,5 +55,11 @@
 @end
 
 @interface MRProgressSlider : UISlider
+@end
+
+@interface UILabel (ConfigureAble)
+- (void)configureWithTime:(NSString *)time;
+- (void)configureWithLight;
+- (void)configureWithVolume:(float)volume;
 @end
 

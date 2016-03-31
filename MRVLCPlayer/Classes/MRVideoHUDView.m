@@ -7,10 +7,8 @@
 //
 
 #import "MRVideoHUDView.h"
+#import "MRVideoConst.h"
 
-
-static const NSTimeInterval kHUDCycleTimeInterval = 0.8f;
-static const CGFloat kHUDCycleLineWidth = 3.0f;
 
 @interface MRVideoHUDView ()
 {

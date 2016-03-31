@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define kHUDCenter CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
-
 @interface MRVideoHUDView : UIView
 
 @end

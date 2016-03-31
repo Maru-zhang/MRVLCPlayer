@@ -8,19 +8,10 @@
 
 #import "MRVideoControlView.h"
 
-#define MRRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
-
-static const CGFloat MRProgressWidth = 3.0f;
-static const CGFloat MRVideoControlBarHeight = 40.0;
-static const CGFloat MRVideoControlSliderHeight = 10.0;
-static const CGFloat MRVideoControlAnimationTimeinterval = 0.3;
-static const CGFloat MRVideoControlTimeLabelFontSize = 10.0;
-static const CGFloat MRVideoControlBarAutoFadeOutTimeinterval = 4.0;
-static const CGFloat MRVideoControlCorrectValue = 3;
-
-
 @interface MRVideoControlView ()
-@property (nonatomic,strong) MRVideoAlertView *alertView;
+/** 提示 */
+@property (nonatomic, strong) UILabel *alertlable;
+@property (nonatomic, strong) UIPanGestureRecognizer *pan;
 @end
 @implementation MRVideoControlView
 
@@ -50,7 +41,8 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     self.shrinkScreenButton.frame = self.fullScreenButton.frame;
     self.indicatorView.center     = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
     self.timeLabel.frame          = CGRectMake(CGRectGetMaxX(self.playButton.frame), self.playButton.frame.origin.y, CGRectGetWidth(self.bottomBar.bounds), CGRectGetHeight(self.timeLabel.bounds));
-    self.alertView.center         = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
+    self.alertlable.center        = CGPointMake(CGRectGetWidth(self.bounds) / 2, CGRectGetHeight(self.bounds) / 2);
+    
 }
 
 - (void)didMoveToSuperview
@@ -101,7 +93,7 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     [self addSubview:self.indicatorView];
     [self addSubview:self.bottomBar];
     [self addSubview:self.indicatorView];
-    [self addSubview:self.alertView];
+    [self addSubview:self.alertlable];
 
     [self.topBar    addSubview:self.closeButton];
     [self.bottomBar addSubview:self.playButton];
@@ -113,6 +105,9 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     
     self.pauseButton.hidden = YES;
     self.shrinkScreenButton.hidden = YES;
+    
+    [self addGestureRecognizer:self.pan];
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)]];
 }
 
 
@@ -123,58 +118,78 @@ static const CGFloat MRVideoControlCorrectValue = 3;
 #pragma mark - Override
 #pragma mark Touch Event
 
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(animateHide) object:nil];
+- (void)tapAction:(UITapGestureRecognizer *)tap {
     
-    UITouch *touch = [touches anyObject];
-    
-    CGPoint nowPoint = [touch locationInView:self];
-    CGPoint prePoint = [touch previousLocationInView:self];
-    
-    CGFloat d_value_x = nowPoint.x - prePoint.x;
-    CGFloat d_value_y = nowPoint.y - prePoint.y;
-    
-    if (ABS(d_value_x) > ABS(d_value_y)) {
-            [self.topBar setHidden:NO];
-            [self.bottomBar setHidden:NO];
-        if (d_value_x > MRVideoControlCorrectValue) {
-            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
-                [self.delegate controlViewFingerMoveRight];
-            }
-        }else if(d_value_x < - MRVideoControlCorrectValue) {
-            if ([_delegate respondsToSelector:@selector(controlViewFingerMoveLeft)]) {
-                [self.delegate controlViewFingerMoveLeft];
-            }
-        }
-    }else {
-        
-        if (nowPoint.x > kMRSCREEN_BOUNDS.size.width / 2) {
-            // 音量大小
-            if (d_value_y > MRVideoControlCorrectValue) {
-                if ([_delegate respondsToSelector:@selector(controlViewFingerMoveDown)]) {
-                    [self.delegate controlViewFingerMoveDown];
-                }
-            }else if(d_value_y < - MRVideoControlCorrectValue) {
-                if ([_delegate respondsToSelector:@selector(controlViewFingerMoveUp)]) {
-                    [self.delegate controlViewFingerMoveUp];
-                }
-            }
-        }else {
-            // 亮度大小
-            if (d_value_y > MRVideoControlCorrectValue) {
-                [UIScreen mainScreen].brightness -= 0.01;
-            }else if(d_value_y < - MRVideoControlCorrectValue) {
-                [UIScreen mainScreen].brightness += 0.01;
-            }
-        }
-        
-        
-    }
-    
-    [self performSelector:@selector(animateHide) withObject:nil afterDelay:MRVideoControlBarAutoFadeOutTimeinterval];
 }
 
+- (void)panAction:(UIPanGestureRecognizer *)pan {
+    
+    CGPoint localPoint = [pan locationInView:self];
+    
+    CGPoint speedDir = [pan velocityInView:self];
+    
+    NSLog(@"%@",NSStringFromCGPoint([pan translationInView:self]));
+
+    
+    switch (pan.state) {
+            
+        case UIGestureRecognizerStateBegan: {
+            
+            self.alertlable.alpha = MRVideoControlAlertAlpha;
+            
+        }
+            break;
+            
+            
+        case UIGestureRecognizerStateChanged: {
+            
+            // 判断方向
+            if (ABS(speedDir.x) > ABS(speedDir.y)) {
+                if ([pan translationInView:self].x > 0) {
+                    if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
+                        [self.delegate controlViewFingerMoveRight];
+                    }
+                }else {
+                    if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
+                        [self.delegate controlViewFingerMoveLeft];
+                    }
+                }
+            }else {
+                
+                if (localPoint.x > self.bounds.size.width / 2) {
+                    // 改变音量
+                    if ([pan translationInView:self].y > 0) {
+                        self.volumeSlider.value -= 0.03;
+                    }else {
+                        self.volumeSlider.value += 0.03;
+                    }
+                    [self.alertlable configureWithVolume:self.volumeSlider.value];
+                }else {
+                    // 改变显示亮度
+                    if ([pan translationInView:self].y > 0) {
+                        [UIScreen mainScreen].brightness -= 0.01;
+                    }else {
+                        [UIScreen mainScreen].brightness += 0.01;
+                    }
+                    [self.alertlable configureWithLight];
+                }
+            }
+        }
+            break;
+            
+        case UIGestureRecognizerStateEnded: {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:1 animations:^{
+                    self.alertlable.alpha = 0;
+                }];
+            });
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
@@ -323,18 +338,44 @@ static const CGFloat MRVideoControlCorrectValue = 3;
     return _volumeView;
 }
 
-- (MRVideoAlertView *)alertView {
-    if (!_alertView) {
-        _alertView = [MRVideoAlertView shareInstance];
-        _alertView.bounds = CGRectMake(0, 0, 100, 50);
+- (UILabel *)alertlable {
+    if (!_alertlable) {
+        _alertlable = [UILabel new];
+        _alertlable.bounds = CGRectMake(0, 0, 100, 40);
+        _alertlable.textAlignment = NSTextAlignmentCenter;
+        _alertlable.backgroundColor = [UIColor colorWithWhite:0.000 alpha:MRVideoControlAlertAlpha];
+        _alertlable.textColor = [UIColor whiteColor];
+        _alertlable.layer.cornerRadius = 10;
     }
-    return _alertView;
+    return _alertlable;
+}
+
+- (UIPanGestureRecognizer *)pan {
+    if (!_pan) {
+        _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
+    }
+    return _pan;
 }
 
 @end
 @implementation MRProgressSlider
 - (CGRect)trackRectForBounds:(CGRect)bounds {
     return CGRectMake(0, self.bounds.size.height * 0.8, self.bounds.size.width, MRProgressWidth);
+}
+
+@end
+
+@implementation UILabel (ConfigureAble)
+
+- (void)configureWithTime:(NSString *)time {
+    self.text = [NSString stringWithFormat:@">>%@",time];
+}
+- (void)configureWithLight {
+    self.text = [NSString stringWithFormat:@"亮度:%02f%%",[UIScreen mainScreen].brightness * 100];
+}
+
+- (void)configureWithVolume:(float)volume {
+    self.text = [NSString stringWithFormat:@"音量:%02f%%",volume * 100];
 }
 
 @end

@@ -9,8 +9,7 @@
 #import "MRVLCPlayer.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
-
-#define kMediaLength self.player.media.length
+#import "MRVideoConst.h"
 
 static const NSTimeInterval kVideoPlayerAnimationTimeinterval = 0.3f;
 

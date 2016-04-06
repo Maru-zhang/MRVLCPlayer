@@ -5,7 +5,7 @@
 
 ## 效果展示
 
-![MRVLCVideoShow](https://github.com/Maru-zhang/MRVLCPlayer/blob/master/MRVLCPlayerShow.gif)
+![MRVLCVideoShow](https://github.com/Maru-zhang/MRVLCPlayer/raw/master/MRVLCPlayerShow.gif)
 
 ## 支持格式
 

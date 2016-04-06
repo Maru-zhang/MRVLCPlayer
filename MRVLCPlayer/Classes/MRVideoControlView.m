@@ -9,8 +9,6 @@
 #import "MRVideoControlView.h"
 
 @interface MRVideoControlView ()
-/** 提示 */
-@property (nonatomic, strong) UILabel *alertlable;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 @end
 @implementation MRVideoControlView
@@ -128,9 +126,6 @@
     
     CGPoint speedDir = [pan velocityInView:self];
     
-    NSLog(@"%@",NSStringFromCGPoint([pan translationInView:self]));
-
-    
     switch (pan.state) {
             
         case UIGestureRecognizerStateBegan: {
@@ -154,6 +149,7 @@
                         [self.delegate controlViewFingerMoveLeft];
                     }
                 }
+                [self.alertlable configureWithTime:[self.timeLabel.text substringToIndex:5]];
             }else {
                 
                 if (localPoint.x > self.bounds.size.width / 2) {
@@ -346,6 +342,7 @@
         _alertlable.backgroundColor = [UIColor colorWithWhite:0.000 alpha:MRVideoControlAlertAlpha];
         _alertlable.textColor = [UIColor whiteColor];
         _alertlable.layer.cornerRadius = 10;
+        _alertlable.alpha = 0;
     }
     return _alertlable;
 }
@@ -371,11 +368,11 @@
     self.text = [NSString stringWithFormat:@">>%@",time];
 }
 - (void)configureWithLight {
-    self.text = [NSString stringWithFormat:@"亮度:%02f%%",[UIScreen mainScreen].brightness * 100];
+    self.text = [NSString stringWithFormat:@"亮度:%d%%",(int)([UIScreen mainScreen].brightness * 100)];
 }
 
 - (void)configureWithVolume:(float)volume {
-    self.text = [NSString stringWithFormat:@"音量:%02f%%",volume * 100];
+    self.text = [NSString stringWithFormat:@"音量:%d%%",(int)(volume * 100)];
 }
 
 @end

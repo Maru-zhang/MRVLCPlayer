@@ -20,11 +20,6 @@
 - (void)controlViewFingerMoveLeft;
 - (void)controlViewFingerMoveRight;
 
-- (void)controlViewPlayButtonDidClick;
-- (void)controlViewPauseButtonDidClick;
-- (void)controlViewfullScreenButtonDidClick;
-- (void)controlViewshrinkScreenButtonDidClick;
-
 @end
 
 

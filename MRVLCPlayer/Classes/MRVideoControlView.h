@@ -53,7 +53,7 @@
 @end
 
 @interface UILabel (ConfigureAble)
-- (void)configureWithTime:(NSString *)time;
+- (void)configureWithTime:(NSString *)time isLeft:(BOOL)left;
 - (void)configureWithLight;
 - (void)configureWithVolume:(float)volume;
 @end

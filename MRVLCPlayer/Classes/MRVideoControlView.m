@@ -144,12 +144,13 @@
                     if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
                         [self.delegate controlViewFingerMoveRight];
                     }
+                    [self.alertlable configureWithTime:[self.timeLabel.text substringToIndex:5] isLeft:NO];
                 }else {
                     if ([_delegate respondsToSelector:@selector(controlViewFingerMoveRight)]) {
                         [self.delegate controlViewFingerMoveLeft];
                     }
+                    [self.alertlable configureWithTime:[self.timeLabel.text substringToIndex:5] isLeft:YES];
                 }
-                [self.alertlable configureWithTime:[self.timeLabel.text substringToIndex:5]];
             }else {
                 
                 if (localPoint.x > self.bounds.size.width / 2) {
@@ -366,8 +367,8 @@
 
 @implementation UILabel (ConfigureAble)
 
-- (void)configureWithTime:(NSString *)time {
-    self.text = [NSString stringWithFormat:@">>%@",time];
+- (void)configureWithTime:(NSString *)time isLeft:(BOOL)left {
+    left ? [self setText:[NSString stringWithFormat:@"<<%@",time]] : [self setText:[NSString stringWithFormat:@">>%@",time]];
 }
 - (void)configureWithLight {
     self.text = [NSString stringWithFormat:@"亮度:%d%%",(int)([UIScreen mainScreen].brightness * 100)];

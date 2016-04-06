@@ -342,6 +342,7 @@
         _alertlable.backgroundColor = [UIColor colorWithWhite:0.000 alpha:MRVideoControlAlertAlpha];
         _alertlable.textColor = [UIColor whiteColor];
         _alertlable.layer.cornerRadius = 10;
+        _alertlable.layer.masksToBounds = YES;
         _alertlable.alpha = 0;
     }
     return _alertlable;
@@ -355,6 +356,7 @@
 }
 
 @end
+
 @implementation MRProgressSlider
 - (CGRect)trackRectForBounds:(CGRect)bounds {
     return CGRectMake(0, self.bounds.size.height * 0.8, self.bounds.size.width, MRProgressWidth);

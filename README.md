@@ -1,8 +1,6 @@
 
 #一个基于VLC的播放器
 
----
-
 ## 效果展示
 
 ![MRVLCVideoShow](https://github.com/Maru-zhang/MRVLCPlayer/blob/master/MRVLCPlayerShow.gif)
@@ -24,4 +22,8 @@
 ## 使用方法
 
 大家都是成年人，看看Demo就可以了，很简单。
+
+## LICENSE
+
+MRVideoPlayer is under the MIT license. See LICENSE for details.
 
